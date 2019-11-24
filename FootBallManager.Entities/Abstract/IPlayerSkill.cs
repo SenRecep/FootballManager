@@ -7,10 +7,9 @@ namespace FootBallManager.Entities.Abstract
 {
    public interface IPlayerSkill
     {
-        
-         Player Player { get; set; }
-        
-         int GoolKeeping { get; set; }
+         int Playerid { get; set; }
+
+        int GoolKeeping { get; set; }
      
          int Defending { get; set; }
       

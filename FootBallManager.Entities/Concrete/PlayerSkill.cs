@@ -10,8 +10,7 @@ namespace FootBallManager.Entities.Concrete
    public class PlayerSkill : EntityBase, IPlayerSkill
     {
         [Required(ErrorMessage ="Valg en spiller")]
-        public Player Player { get; set; }
-        public int PlayerId { get; set; }
+        public int Playerid { get; set; }
         [Required]
         public int GoolKeeping { get; set; } = 0;
         [Required]

@@ -13,12 +13,12 @@ namespace FootballManager.Dal.Concrete.EntityFramework.Contexts
             optionsBuilder.UseSqlServer(@"Server=tcp:avanceretprog.database.windows.net,1433;Initial Catalog=AvanceretProgrammering;Persist Security Info=False;User ID=Sisqo;Password=Menekse1-;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             base.OnConfiguring(optionsBuilder);
         }
-        public DbSet<Adress> Adress { get; set; }
+        public DbSet<Adress> Adresses { get; set; }
         public DbSet<Coach> Coachs { get; set; }
         public DbSet<CoachSkill> CoachSkills { get; set; }
         public DbSet<Description> Descriptions { get; set; }
         public DbSet<Nation> Nations { get; set; }
-        public DbSet<Player> Playerer { get; set; }
+        public DbSet<Player> Players { get; set; }
         public DbSet<PlayerSkill> PlayerSkills { get; set; }
         public DbSet<Postalcode> Postalcodes { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }

@@ -15,7 +15,7 @@ namespace FootballManager.Dal.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -26,14 +26,21 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Adresses")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("PostalCodeid")
                         .HasColumnType("int");
@@ -58,9 +65,6 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Adressid")
-                        .HasColumnType("int");
-
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
@@ -68,27 +72,24 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                         .HasColumnType("datetime2")
+                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
-                    b.Property<int>("DescriptionId")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("Firstname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("MarketPriceValue")
-                        .HasColumnType("float");
 
                     b.Property<int>("Nationid")
                         .HasColumnType("int");
@@ -103,8 +104,6 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("id");
-
-                    b.HasIndex("Adressid");
 
                     b.HasIndex("CoachSkillid");
 
@@ -121,13 +120,16 @@ namespace FootballManager.Dal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                          .HasColumnType("datetime2")
+                          .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -147,17 +149,17 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Coachid")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                          .HasColumnType("datetime2")
+                          .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("PlayerDescription")
                         .HasColumnType("nvarchar(max)");
@@ -173,8 +175,6 @@ namespace FootballManager.Dal.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Coachid");
-
                     b.HasIndex("Playerid");
 
                     b.ToTable("Descriptions");
@@ -188,13 +188,16 @@ namespace FootballManager.Dal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                         .HasColumnType("datetime2")
+                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("Nationality")
                         .IsRequired()
@@ -218,20 +221,23 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Adressid")
+                    b.Property<int>("Adressid")
                         .HasColumnType("int");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                         .HasColumnType("datetime2")
+                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
-                    b.Property<int>("DescriptionId")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -247,8 +253,6 @@ namespace FootballManager.Dal.Migrations
                     b.Property<double>("Height")
                         .HasColumnType("float");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -266,13 +270,17 @@ namespace FootballManager.Dal.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PlayerSkillid")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PlayerSkillid1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Position")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Team")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Teamid")
+                    b.Property<int>("Teamid")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -293,9 +301,11 @@ namespace FootballManager.Dal.Migrations
 
                     b.HasIndex("Nationid");
 
+                    b.HasIndex("PlayerSkillid1");
+
                     b.HasIndex("Teamid");
 
-                    b.ToTable("Playerer");
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("FootBallManager.Entities.Concrete.PlayerSkill", b =>
@@ -309,10 +319,16 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                          .HasColumnType("datetime2")
+                          .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("Defending")
                         .HasColumnType("int");
@@ -320,10 +336,7 @@ namespace FootballManager.Dal.Migrations
                     b.Property<int>("GoolKeeping")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("Playerid")
                         .HasColumnType("int");
 
                     b.Property<int>("Speed")
@@ -340,9 +353,6 @@ namespace FootballManager.Dal.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("PlayerId")
-                        .IsUnique();
-
                     b.ToTable("PlayerSkills");
                 });
 
@@ -353,20 +363,24 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdressPostalCode")
-                        .HasColumnType("int");
-
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                         .HasColumnType("datetime2")
+                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
+
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -390,16 +404,19 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                         .HasColumnType("datetime2")
+                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("Founded")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<string>("StadiumName")
                         .IsRequired()
@@ -431,16 +448,19 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                         .HasColumnType("datetime2")
+                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("Founded")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Stadiumid")
                         .HasColumnType("int");
@@ -468,18 +488,18 @@ namespace FootballManager.Dal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                          .HasColumnType("datetime2")
+                          .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("Place")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Teamid")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -491,9 +511,12 @@ namespace FootballManager.Dal.Migrations
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
+                    b.Property<int>("teamid")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
 
-                    b.HasIndex("Teamid");
+                    b.HasIndex("teamid");
 
                     b.ToTable("Trophies");
                 });
@@ -505,33 +528,41 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Adressid")
+                    b.Property<int>("Adressid")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                         .HasColumnType("datetime2")
+                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("CreateUserid")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(1);
+
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Firstname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Lastname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -558,10 +589,6 @@ namespace FootballManager.Dal.Migrations
 
             modelBuilder.Entity("FootBallManager.Entities.Concrete.Coach", b =>
                 {
-                    b.HasOne("FootBallManager.Entities.Concrete.Adress", "Adress")
-                        .WithMany()
-                        .HasForeignKey("Adressid");
-
                     b.HasOne("FootBallManager.Entities.Concrete.CoachSkill", "CoachSkill")
                         .WithMany()
                         .HasForeignKey("CoachSkillid")
@@ -577,10 +604,6 @@ namespace FootballManager.Dal.Migrations
 
             modelBuilder.Entity("FootBallManager.Entities.Concrete.Description", b =>
                 {
-                    b.HasOne("FootBallManager.Entities.Concrete.Coach", null)
-                        .WithMany("Descriptions")
-                        .HasForeignKey("Coachid");
-
                     b.HasOne("FootBallManager.Entities.Concrete.Player", "Player")
                         .WithMany("Descriptions")
                         .HasForeignKey("Playerid")
@@ -592,7 +615,9 @@ namespace FootballManager.Dal.Migrations
                 {
                     b.HasOne("FootBallManager.Entities.Concrete.Adress", "Adress")
                         .WithMany()
-                        .HasForeignKey("Adressid");
+                        .HasForeignKey("Adressid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FootBallManager.Entities.Concrete.Nation", "Nation")
                         .WithMany()
@@ -600,16 +625,13 @@ namespace FootballManager.Dal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FootBallManager.Entities.Concrete.Team", null)
-                        .WithMany("Players")
-                        .HasForeignKey("Teamid");
-                });
+                    b.HasOne("FootBallManager.Entities.Concrete.PlayerSkill", "PlayerSkill")
+                        .WithMany()
+                        .HasForeignKey("PlayerSkillid1");
 
-            modelBuilder.Entity("FootBallManager.Entities.Concrete.PlayerSkill", b =>
-                {
-                    b.HasOne("FootBallManager.Entities.Concrete.Player", "Player")
-                        .WithOne("PlayerSkills")
-                        .HasForeignKey("FootBallManager.Entities.Concrete.PlayerSkill", "PlayerId")
+                    b.HasOne("FootBallManager.Entities.Concrete.Team", "Team")
+                        .WithMany("Players")
+                        .HasForeignKey("Teamid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -629,16 +651,20 @@ namespace FootballManager.Dal.Migrations
 
             modelBuilder.Entity("FootBallManager.Entities.Concrete.Trophy", b =>
                 {
-                    b.HasOne("FootBallManager.Entities.Concrete.Team", null)
+                    b.HasOne("FootBallManager.Entities.Concrete.Team", "team")
                         .WithMany("Trophies")
-                        .HasForeignKey("Teamid");
+                        .HasForeignKey("teamid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FootBallManager.Entities.Concrete.User", b =>
                 {
                     b.HasOne("FootBallManager.Entities.Concrete.Adress", "Adress")
                         .WithMany()
-                        .HasForeignKey("Adressid");
+                        .HasForeignKey("Adressid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
