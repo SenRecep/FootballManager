@@ -54,7 +54,7 @@ namespace FootballManager.WpfUI
                     PostalCode = new Postalcode()
                     {
                         City = "Istanbul",
-                        AdressPostalCode = 3477
+                        PostalCode = 3477
                     }
                 }
             });

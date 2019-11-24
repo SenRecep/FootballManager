@@ -16,11 +16,11 @@ namespace FootballManager.Api.Test.TrophyControllerServiceTest
         public void ReturnNullNoTrophyExist()
         {
             //Arrance
-            TrophyController trophy = new TrophyController(new TrophyManager(new EfTrophyDal()));
-            //ACT
-            trophy = null;
-            //Assert
-            Assert.AreEqual(trophy, trophy);
+            //TrophyController trophy = new TrophyController(new TrophyManager(new EfTrophyDal()));
+            ////ACT
+            //trophy = null;
+            ////Assert
+            //Assert.AreEqual(trophy, trophy);
         }
     }
 }
