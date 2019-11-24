@@ -50,7 +50,7 @@ namespace FootballManager.Api.Controllers
         }
 
         // DELETE: api/User/Delete/5
-        [HttpDelete, Route("{id}"), ResponseType(typeof(string))] 
+        [HttpDelete, Route("{id}"), ResponseType(typeof(void))] 
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse Delete(int id)
         {

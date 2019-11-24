@@ -29,35 +29,38 @@ namespace FootballManager.WpfUI
             InitializeComponent();
 
         }
-        public async void Add(User user)
-        {
-            //IEnumerable<User> datas = ApiCenter.getData<IEnumerable<User>>(await ApiCenter.GetAsync("User"));
-            //User data = ApiCenter.getData<User>(await ApiCenter.GetAsync("User/5"));
-            //data.Firstname = "Artik Duzellll";
-            EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(user, "User/Create");
-            //EntityHttpResponse entityHttpResponse = await ApiCenter.UpdateAsync(data, "User/Update");
-            //EntityHttpResponse entityHttpResponse = await ApiCenter.DeleteAsync("5", "User/");
-        }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Add(new User()
+            Adress adress = ApiCenter.getData<Adress>(await ApiCenter.GetAsync("Adress/1"));
+            adress.PostalCode= ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("Postalcode/"+adress.PostalCodeid));
+            User user = new User()
             {
-                Firstname = "Recep",
-                Lastname = "Sen",
-                Email = "67rsen00@gmail.com",
-                Password = "patates",
-                Adress = new Adress()
-                {
-                    Adresses = "Turkiye/Istanbul/Gokturk No:61 D:3",
-                    PostalCode = new Postalcode()
-                    {
-                        City = "Istanbul",
-                        PostalCode = 3477
-                    }
-                }
-            });
+                Firstname="Recep",
+                Lastname="Şen",
+                Email="67rsen00@gmail.com",
+                Adress= adress,
+                Password="1943332733Rec",
+            };
+            EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(user, "User/Create");
         }
+
+
+        #region Adress
+        //Postalcode data = ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("PostalCode/1"));
+        //Adress adress = new Adress()
+        //{
+        //    Adresses = "Turkiye/Istanbul/Gokturk No:61 D:3",
+        //    PostalCode = data,
+        //};
+        //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(adress, "Adress/Create");
+        #endregion
+        #region CRUD PostalCode
+        //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(postalcode, "PostalCode/Create");
+        //IEnumerable<Postalcode> datas = ApiCenter.getData<IEnumerable<Postalcode>>(await ApiCenter.GetAsync("PostalCode"));
+        //Postalcode data = ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("PostalCode/1"));
+        //EntityHttpResponse entityHttpResponse = await ApiCenter.UpdateAsync(data, "PostalCode/Update");
+        //EntityHttpResponse entityHttpResponse = await ApiCenter.DeleteAsync("2", "PostalCode");
+        #endregion
     }
 }
