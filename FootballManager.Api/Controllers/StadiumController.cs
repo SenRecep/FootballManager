@@ -2,59 +2,60 @@
 using FootballManager.Api.Helper;
 using FootballManager.Bll.Abstract;
 using FootballManager.Bll.Concrete;
-using FootBallManager.Entities.Concrete;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
 using static FootballManager.Api.Helper.ExeptionErrorMesaageFromApi;
+using Microsoft.AspNetCore.Mvc;
+using FootBallManager.Entities.Concrete;
+
 namespace FootballManager.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdressController : BaseController
+    public class StadiumController : BaseController
     {
-        private readonly AdressManager _Adressmanager;
-        public AdressController(IAdressesService Adress)
+        private readonly StadiumManager _stadiumManager;
+        public StadiumController(IStadiumService stadium)
         {
-            _Adressmanager = (AdressManager)Adress;
+            _stadiumManager = (StadiumManager)stadium;
         }
 
-        // GET: api/Adress
+        // GET: api/Stadium
         [HttpGet, ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
-        public EntityHttpResponse GetAll() => new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Adressmanager.GetAll(), true);
+        public EntityHttpResponse GetAll() => new EntityHttpResponse(System.Net.HttpStatusCode.OK, _stadiumManager.GetAll(), true);
 
-        // GET: api/Adress/5
+        // GET: api/Stadium/5
         //[ApiAuthorizeAttribute(Roles = "A")]
         [HttpGet, Route("{id}"), ResponseType(typeof(string))]
         public EntityHttpResponse Get(int id)
         {
-            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Adressmanager.Get(x => x.id == id), true);
+            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _stadiumManager.Get(x => x.id == id), true);
         }
 
-        // POST: api/Adress/Create
+        // POST: api/Stadium/Create
         [EnableCors("AnotherPolicy")]
         [HttpPost, Route("{Adress}"), ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
-        public EntityHttpResponse Create([FromBody] Adress value)
+        public EntityHttpResponse Create([FromBody] Stadium value)
         {
-            return ControlBeforeAddorUpdate(value, ModelState, Request, _Adressmanager, true);
+            return ControlBeforeAddorUpdate(value, ModelState, Request, _stadiumManager, true);
         }
 
-        // PUT: api/Adress/Update/5
+        // PUT: api/Stadium/Update/5
         [HttpPut, Route("{Adress}"), ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
-        public EntityHttpResponse Update([FromBody] Adress value)
+        public EntityHttpResponse Update([FromBody] Stadium value)
         {
-            return ControlBeforeAddorUpdate(value, ModelState, Request, _Adressmanager, false);
+            return ControlBeforeAddorUpdate(value, ModelState, Request, _stadiumManager, false);
         }
 
-        // DELETE: api/Adress/Delete/5
+        // DELETE: api/Stadium/Delete/5
         [HttpDelete, Route("{id}"), ResponseType(typeof(void))]
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse Delete(int id)
         {
-            _Adressmanager.Delete(x => x.id == id);
-            _Adressmanager.Save();
+            _stadiumManager.Delete(x => x.id == id);
+            _stadiumManager.Save();
             return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
         }
     }
