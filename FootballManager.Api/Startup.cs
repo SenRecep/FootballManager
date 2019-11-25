@@ -64,6 +64,13 @@ namespace FootballManager.Api
             services.AddScoped<ITrophyDal, EfTrophyDal>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IUserDal, EfUserDal>();
+
+            services.AddScoped<IMatchesService, MatchesManager>();
+            services.AddScoped<IMatchesDal, EfMatchesDal>();
+            services.AddScoped<ISeasonService, SeasonManager>();
+            services.AddScoped<ISeasonDal, EfSeasonDal>();
+            services.AddScoped<ILeagueService, LeagueManager>();
+            services.AddScoped<ILeagueDal, EfLeagueDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

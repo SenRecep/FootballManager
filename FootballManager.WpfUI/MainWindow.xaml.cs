@@ -27,25 +27,26 @@ namespace FootballManager.WpfUI
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Adress adress = ApiCenter.getData<Adress>(await ApiCenter.GetAsync("Adress/1"));
-            //User user = new User()
-            //{
-            //    Firstname = "Murat",
-            //    Lastname = "Şen",
-            //    Email = "kefkenahsapdekorasyon@gmail.com",
-            //    Adress = adress,
-            //    Password = "bubirsifre",
-            //};
-            //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(user, "User/Create");
-            //IEnumerable<User> datas = ApiCenter.getData<IEnumerable<User>>(await ApiCenter.GetAsync("User"));
+            
         }
 
-
+        #region User
+        //Adress adress = ApiCenter.getData<Adress>(await ApiCenter.GetAsync("Adress/1"));
+        //User user = new User()
+        //{
+        //    Firstname = "Murat",
+        //    Lastname = "Şen",
+        //    Email = "kefkenahsapdekorasyon@gmail.com",
+        //    Adress = adress,
+        //    Password = "bubirsifre",
+        //};
+        //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(user, "User/Create");
+        //IEnumerable<User> datas = ApiCenter.getData<IEnumerable<User>>(await ApiCenter.GetAsync("User"));
+        #endregion
         #region Adress
         //Postalcode data = ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("PostalCode/1"));
         //Adress adress = new Adress()

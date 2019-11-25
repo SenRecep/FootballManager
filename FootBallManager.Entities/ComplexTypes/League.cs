@@ -1,12 +1,19 @@
-﻿using FootBallManager.Entities.Concrete;
+﻿using FootballManager.Core.Entities;
+using FootBallManager.Entities.Abstract;
+using FootBallManager.Entities.ComplexTypes;
+using FootBallManager.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FootBallManager.ComplexType
+namespace FootBallManager.Entities.ComplexTypes
 {
-    public class League
+    public class League :EntityBase, ILeague
     {
-        public List<Team> Teams { get; set; }
+        public Season Season { get; set; }
+        public int Seasonid { get; set; }
+
+        public virtual List<Team> Teams { get; set; }
+        public virtual List<Matches> Matches { get; set; }
     }
 }
