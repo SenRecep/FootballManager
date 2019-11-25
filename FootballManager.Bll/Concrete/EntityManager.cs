@@ -14,58 +14,58 @@ namespace FootballManager.Bll.Concrete
         {
             _repostory = repostory;
         }
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             _repostory.Add(entity);
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             _repostory.Delete(entity);
         }
 
-        public void Delete(Expression<Func<T, bool>> filter)
+        public virtual void Delete(Expression<Func<T, bool>> filter)
         {
             _repostory.Delete(filter);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, params string[] navigations)
+        public virtual T Get(Expression<Func<T, bool>> filter, params string[] navigations)
         {
             return _repostory.Get(filter, navigations);
         }
 
-        public ICollection<T> GetAll(params string[] navigations)
+        public virtual ICollection<T> GetAll(params string[] navigations)
         {
             return _repostory.GetAll(navigations);
         }
 
-        public ICollection<T> GetMany(Expression<Func<T, bool>> filter = null, params string[] navigations)
+        public virtual ICollection<T> GetMany(Expression<Func<T, bool>> filter = null, params string[] navigations)
         {
             return _repostory.GetMany(filter, navigations);
         }
 
-        public void Save()
+        public virtual void Save()
         {
             _repostory.Save();
         }
 
-        public int _Save()
+        public virtual int _Save()
         {
             return _repostory._Save();
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             _repostory.Update(entity);
         }
         
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _repostory.Dispose();
         }
 
-        public void Build()
+        public virtual void Build()
         {
             _repostory.Build();
         }

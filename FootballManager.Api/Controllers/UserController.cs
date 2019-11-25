@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Web.Http.Description;
+using System.Linq;
 using static FootballManager.Api.Helper.ExeptionErrorMesaageFromApi;
 namespace FootballManager.Api.Controllers
 {
@@ -14,22 +15,29 @@ namespace FootballManager.Api.Controllers
     public class UserController : BaseController
     {
         private readonly UserManager _usermanager;
-        public UserController(IUserService user)
+        private readonly AdressManager _adressmanager;
+        private readonly PostalcodeManager _postalcodeManager;
+        public UserController(IUserService user,IAdressesService adressesService,IPostalcodeService postalcodeService)
         {
             _usermanager = (UserManager)user;
+            _adressmanager = (AdressManager)adressesService;
+            _postalcodeManager = (PostalcodeManager)postalcodeService;
         }
 
         // GET: api/User
-        [HttpGet, ResponseType(typeof(string))] 
+        [HttpGet, ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
-        public EntityHttpResponse GetAll() => new EntityHttpResponse(System.Net.HttpStatusCode.OK, _usermanager.GetAll(), true);
+        public EntityHttpResponse GetAll()
+        {
+            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _usermanager.GetAllLoadAdress(_adressmanager,_postalcodeManager), true);
+        }
 
         // GET: api/User/5
         //[ApiAuthorizeAttribute(Roles = "A")]
         [HttpGet, Route("{id}"), ResponseType(typeof(string))] 
         public EntityHttpResponse Get(int id)
         {
-            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _usermanager.Get(x => x.id == id), true);
+            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _usermanager.GetLoadAdress(id,_adressmanager,_postalcodeManager), true);
         }
 
         // POST: api/User/Create

@@ -15,7 +15,7 @@ namespace FootBallManager.Entities.Concrete
         public string Lastname { get; set; }
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage ="ugyldig adresse")]
-        public Adress Adress{ get; set; }
+        public virtual Adress Adress{ get; set; }
         public int Adressid{ get; set; }
         [Required]
         public bool IsAdmin { get; set; } = false;

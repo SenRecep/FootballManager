@@ -32,17 +32,17 @@ namespace FootballManager.WpfUI
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Adress adress = ApiCenter.getData<Adress>(await ApiCenter.GetAsync("Adress/1"));
-            adress.PostalCode= ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("Postalcode/"+adress.PostalCodeid));
-            User user = new User()
-            {
-                Firstname="Recep",
-                Lastname="Şen",
-                Email="67rsen00@gmail.com",
-                Adress= adress,
-                Password="1943332733Rec",
-            };
-            EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(user, "User/Create");
+            //Adress adress = ApiCenter.getData<Adress>(await ApiCenter.GetAsync("Adress/1"));
+            //adress.PostalCode= ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("Postalcode/"+adress.PostalCodeid));
+            //User user = new User()
+            //{
+            //    Firstname="Recep",
+            //    Lastname="Şen",
+            //    Email="67rsen00@gmail.com",
+            //    Adress= adress,
+            //    Password="1943332733Rec",
+            //};
+            //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(user, "User/Create");
         }
 
 

@@ -1,4 +1,5 @@
-﻿using System.Web.Http.Description;
+﻿using System.Collections.Generic;
+using System.Web.Http.Description;
 using FootballManager.Api.Helper;
 using FootballManager.Bll.Abstract;
 using FootballManager.Bll.Concrete;
@@ -13,22 +14,27 @@ namespace FootballManager.Api.Controllers
     public class AdressController : BaseController
     {
         private readonly AdressManager _Adressmanager;
-        public AdressController(IAdressesService Adress)
+        private readonly PostalcodeManager _postalcodeManager;
+        public AdressController(IAdressesService Adress,IPostalcodeService postalcodeService)
         {
             _Adressmanager = (AdressManager)Adress;
+            _postalcodeManager = (PostalcodeManager)postalcodeService;
         }
 
         // GET: api/Adress
         [HttpGet, ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
-        public EntityHttpResponse GetAll() => new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Adressmanager.GetAll(), true);
+        public EntityHttpResponse GetAll()
+        {
+            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Adressmanager.GetAllLoadPostalCode(_postalcodeManager), true);
+        }
 
         // GET: api/Adress/5
         //[ApiAuthorizeAttribute(Roles = "A")]
         [HttpGet, Route("{id}"), ResponseType(typeof(string))]
         public EntityHttpResponse Get(int id)
         {
-            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Adressmanager.Get(x => x.id == id), true);
+            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Adressmanager.GetLoadPostalCode(id,_postalcodeManager), true);
         }
 
         // POST: api/Adress/Create
