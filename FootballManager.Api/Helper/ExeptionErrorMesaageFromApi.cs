@@ -37,8 +37,8 @@ namespace FootballManager.Api.Helper
                 {
                     if (status)
                     {
-                        if (entity is User user)
-                            user.Password = PasswordCryptographyCombine(user.Password);
+                        //if (entity is User user)
+                        //    user.Password = PasswordCryptographyCombine(user.Password);
                         manager.Add(entity);
                     }
                     else

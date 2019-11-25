@@ -11,6 +11,8 @@ namespace FootBallManager.Entities.Abstract
         string Lastname { get; set; }
         Adress Adress { get; set; }
         int Adressid { get; set; }
-        bool IsAdmin { get; set; }
+        string UserName { get; set; }
+        string Email { get; set; }
+        string Password { get; set; }
     }
 }
