@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballManager.Dal.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    [Migration("20191125230030_init")]
-    partial class init
+    [Migration("20191126111439__inital_")]
+    partial class _inital_
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -646,14 +646,14 @@ namespace FootballManager.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TagName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("UpdateUserid")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 

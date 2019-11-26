@@ -9,7 +9,6 @@ namespace FootBallManager.Entities.Concrete
 {
    public class User :EntityBase, IUser
     {
-        public string UserName { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         [DataType(DataType.MultilineText)]
@@ -22,5 +21,6 @@ namespace FootBallManager.Entities.Concrete
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Indtast en gyldig adgangskode")]
         public string Password { get; set; }
+        public string TagName { get; set; }
     }
 }

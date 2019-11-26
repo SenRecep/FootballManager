@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FootballManager.MvcUi.Models;
-using FootballManager.MvcUi.Entities;
 
 namespace FootballManager.MvcUi.Controllers
 {

@@ -1,4 +1,3 @@
-using FootballManager.MvcUi.Entities;
 using FootballManager.MvcUi.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,14 +23,10 @@ namespace FootballManager.MvcUi
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<CustomIdentityContext>(options =>
-            options.UseSqlServer(@"Server=tcp:avanceretprog.database.windows.net,1433;Initial Catalog=AvanceretProgrammering;Persist Security Info=False;User ID=Sisqo;Password=Menekse1-;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
-            services.AddIdentity<CustomIdentityUser,CustomIdentityRole>().AddEntityFrameworkStores<CustomIdentityContext>().AddDefaultTokenProviders();
             services.AddSession();
             services.AddDistributedMemoryCache();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,7 +36,6 @@ namespace FootballManager.MvcUi
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -53,10 +47,6 @@ namespace FootballManager.MvcUi
             app.UseSession();
 
             app.UseNodeModules(env.ContentRootPath);
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
