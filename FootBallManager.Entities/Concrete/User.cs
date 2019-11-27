@@ -21,6 +21,7 @@ namespace FootBallManager.Entities.Concrete
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Indtast en gyldig adgangskode")]
         public string Password { get; set; }
+        //todo:Required Yap
         public string TagName { get; set; }
 
         public decimal Money { get; set; }

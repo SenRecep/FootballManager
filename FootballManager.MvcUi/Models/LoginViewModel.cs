@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FootballManager.MvcUi.Models
 {
     public class LoginViewModel
     {
-        [Required]
-        public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Venligst udfyld en gyldig Email")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "Venligst skriv en adgangskode")]
         [DataType(DataType.Password)]
+        [Display(Name = "Adgangskode")]
         public string Password { get; set; }
-        [Required]
-        public bool RememberMe { get; set; }
+        [Display(Name ="Husk mig")]
+        public bool RememberMe { get; set; } 
     }
 }

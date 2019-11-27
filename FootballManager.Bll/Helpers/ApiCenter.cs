@@ -42,6 +42,15 @@ namespace FootballManager.Bll.Helpers
                 return await response.Content.ReadAsAsync<EntityHttpResponse>();
             return new EntityHttpResponse();
         }
+
+        public static async Task<EntityHttpResponse> PostAsync<T>(string uri, T t) where T : class
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync(uri, t);
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadAsAsync<EntityHttpResponse>();
+            return new EntityHttpResponse();
+        }
+
         public static async Task<EntityHttpResponse> GetAsync(string controller)
         {
             HttpResponseMessage response = await client.GetAsync(controller);

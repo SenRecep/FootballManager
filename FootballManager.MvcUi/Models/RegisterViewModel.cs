@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootBallManager.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,16 +9,22 @@ namespace FootballManager.MvcUi.Models
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Udfyld brugernavn")]
+        [Display(Name ="Brugernavn")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Udfyld adgangskode")]
+        [Display(Name = "Adgangskode")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        //[Required]
-        //[DataType(DataType.Password)]
-        //public string ConfirmPassword { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Adganskoder skal være ens")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Adgangskode bekræftelse")]
+        public string PasswordConfirmation { get; set; }
+        [Required(ErrorMessage = "Udfyld Email adresse")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Udfyld adresse")]
+        public Adress Adress { get; set; }
     }
 }
