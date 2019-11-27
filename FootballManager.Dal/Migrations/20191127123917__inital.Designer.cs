@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballManager.Dal.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    [Migration("20191126111439__inital_")]
-    partial class _inital_
+    [Migration("20191127123917__inital")]
+    partial class _inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -642,12 +642,18 @@ namespace FootballManager.Dal.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Money")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TagName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Teamid")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -658,6 +664,8 @@ namespace FootballManager.Dal.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("Adressid");
+
+                    b.HasIndex("Teamid");
 
                     b.ToTable("Users");
                 });
@@ -775,6 +783,12 @@ namespace FootballManager.Dal.Migrations
                     b.HasOne("FootBallManager.Entities.Concrete.Adress", "Adress")
                         .WithMany()
                         .HasForeignKey("Adressid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FootBallManager.Entities.Concrete.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("Teamid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

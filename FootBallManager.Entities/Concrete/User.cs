@@ -22,5 +22,10 @@ namespace FootBallManager.Entities.Concrete
         [Required(ErrorMessage = "Indtast en gyldig adgangskode")]
         public string Password { get; set; }
         public string TagName { get; set; }
+
+        public decimal Money { get; set; }
+
+        public Team Team { get; set; }
+        public int Teamid { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 using FootballManager.MvcUi.Middlewares;
+using FootballManager.MvcUi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +24,8 @@ namespace FootballManager.MvcUi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddSingleton<IUserSessionService, UserSessionService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
             services.AddDistributedMemoryCache();
         }
