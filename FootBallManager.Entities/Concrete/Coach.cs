@@ -18,11 +18,11 @@ namespace FootBallManager.Entities.Concrete
         public int Age { get; set; }
         [Required(ErrorMessage = "Nationalitet kan ikke være tom")]
         public Nation Nation { get; set; }
-        public int Nationid { get; set; }
+        public int? Nationid { get; set; }
         [Required]
         public double WeeklyPaid { get; set; } = 0;
         [Required]
         public CoachSkill CoachSkill { get; set; }
-        public int CoachSkillid { get; set; }
+        public int? CoachSkillid { get; set; }
     }
 }

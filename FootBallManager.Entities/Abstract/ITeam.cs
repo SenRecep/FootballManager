@@ -10,9 +10,10 @@ namespace FootBallManager.Entities.Abstract
         string ClubName { get; set; }
         int Founded { get; set; }
         Stadium Stadium { get; set; }
-        int Stadiumid { get; set; }
+        int? Stadiumid { get; set; }
         List<Player> Players { get; set; }
         Coach Coach{ get; set; }
+        int? Coachid { get; set; }
         List<Trophy> Trophies { get; set; }
     }
 }

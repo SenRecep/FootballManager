@@ -18,12 +18,12 @@ namespace FootBallManager.Entities.Concrete
         [Required(ErrorMessage ="Valg en stadium til holdet")  ]
 
         public Stadium Stadium { get; set; }
-        public int Stadiumid { get; set; }
+        public int? Stadiumid { get; set; }
 
-        public List<Player> Players { get; set; }
+        public virtual List<Player> Players { get; set; }
         
         public Coach Coach{ get; set; }
-        //todo: Coach id verilmemis
+        public int? Coachid { get; set; }
 
         public virtual List<Trophy> Trophies { get; set; }
 

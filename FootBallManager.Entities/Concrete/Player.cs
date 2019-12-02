@@ -37,10 +37,10 @@ namespace FootBallManager.Entities.Concrete
         [Required(ErrorMessage = "Marketsprisen kan ikke være tom")]
         public double MarketPriceValue { get; set; }
         public PlayerSkill PlayerSkill { get; set; }
-        public int PlayerSkillid { get; set; }
+        public int? PlayerSkillid { get; set; }
         public virtual List<Description> Descriptions { get; set; }
         public int Number { get; set; }
         public Team Team { get; set; }
-        public int Teamid { get; set; }
+        public int? Teamid { get; set; }
     }
 }

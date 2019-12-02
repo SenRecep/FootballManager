@@ -10,6 +10,6 @@ namespace FootBallManager.Entities.Abstract
         int Year { get; set; }
         int Place { get; set; }
         Team team { get; set; }
-        int teamid { get; set; }
+        int? teamid { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace FootBallManager.Entities.Concrete
 
         [Required(ErrorMessage = "Valg spiller til beskrivelse")]
         public Player Player { get; set; }
-        public int  Playerid { get; set; }
+        public int?  Playerid { get; set; }
         [DataType(DataType.MultilineText)]
 
         [Range(10, 500, ErrorMessage = "Beskrivelsen skal være mellem 10 og 500 tegn lang")]

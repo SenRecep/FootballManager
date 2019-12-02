@@ -12,10 +12,11 @@ namespace FootBallManager.Entities.Abstract
 
         int Age { get; set; }
         Nation Nation { get; set; }
-        int Nationid { get; set; }
+        int? Nationid { get; set; }
 
         double WeeklyPaid { get; set; }
         CoachSkill CoachSkill { get; set; }
+        int? CoachSkillid { get; set; }
 
     }
 }

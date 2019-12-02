@@ -11,6 +11,6 @@ namespace FootBallManager.Entities.Concrete
         [Required(ErrorMessage = "Valg placering")]
         public int Place { get; set; }
         public Team team { get; set; }
-        public int teamid { get; set; }
+        public int? teamid { get; set; }
     }
 }

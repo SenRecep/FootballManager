@@ -11,7 +11,9 @@ namespace FootBallManager.Entities.ComplexTypes
     {
         public DateTime Date { get; set; }
         public Team FirstTeam { get; set; }
+        public int? FirstTeamid { get; set; }
         public Team SecondTeam { get; set; }
+        public int? SecondTeamid { get; set; }
         public int ScoreFirstTeam { get; set; }
         public int ScoreSecondTeam { get; set; }
         public bool IsPlayed { get; set; }

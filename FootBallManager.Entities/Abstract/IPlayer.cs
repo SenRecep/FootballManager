@@ -23,10 +23,10 @@ namespace FootBallManager.Entities.Abstract
          double WeeklyPaid { get; set; }
          double MarketPriceValue { get; set; }
          PlayerSkill PlayerSkill { get; set; }
-         int PlayerSkillid { get; set; }
+         int? PlayerSkillid { get; set; }
          List<Description> Descriptions { get; set; }
          int Number { get; set; }
          Team Team { get; set; }
-         int Teamid { get; set; }
+         int? Teamid { get; set; }
     }
 }

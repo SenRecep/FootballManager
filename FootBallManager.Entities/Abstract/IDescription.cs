@@ -9,7 +9,7 @@ namespace FootBallManager.Entities.Abstract
     {
        
         Player Player { get; set; }
-        int Playerid { get; set; }
+        int? Playerid { get; set; }
         string PlayerDescription { get; set; }
     }
 }

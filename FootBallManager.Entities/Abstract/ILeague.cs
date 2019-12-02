@@ -8,7 +8,7 @@ namespace FootBallManager.Entities.Abstract
     {
         List<Matches> Matches { get; set; }
         Season Season { get; set; }
-        int Seasonid { get; set; }
+        int? Seasonid { get; set; }
         List<Team> Teams { get; set; }
     }
 }
