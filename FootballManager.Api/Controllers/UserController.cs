@@ -12,6 +12,7 @@ using static FootballManager.Bll.Helpers.ToPasswordRepository;
 using FootBallManager.Entities.Abstract;
 using System.Text;
 using System;
+using FootballManager.Bll.Concrete.ObligatoryMethods;
 
 namespace FootballManager.Api.Controllers
 {
@@ -22,27 +23,31 @@ namespace FootballManager.Api.Controllers
         private readonly UserManager _usermanager;
         private readonly AdressManager _adressmanager;
         private readonly PostalcodeManager _postalcodeManager;
-        private readonly StadiumManager _stadiumManager;
         private readonly TeamManager _teamManager;
-        private readonly CoachManager _coachManager;
         private readonly NationManager _nationManager;
+        private readonly PlayerSkillManager _playerskillManager;
+        private readonly PlayerManager _playerManager;
+        private readonly StadiumManager _stadiumManager;
+        
 
         public UserController(
             IUserService user,
             IAdressesService adressesService,
             IPostalcodeService postalcodeService,
-            IStadiumService stadiumService,
-            ITeamService teamService,
-            ICoachService coachService,
-            INationService nationService)
+            ITeamService  teamService,
+            INationService nationService,
+            IPlayerSkillService playskillService,
+            IPlayerService playerService,
+            IStadiumService stadiumService)
         {
             _usermanager = (UserManager)user;
             _adressmanager = (AdressManager)adressesService;
             _postalcodeManager = (PostalcodeManager)postalcodeService;
-            _stadiumManager = (StadiumManager)stadiumService;
             _teamManager = (TeamManager)teamService;
-            _coachManager = (CoachManager)coachService;
             _nationManager = (NationManager)nationService;
+            _playerskillManager = (PlayerSkillManager)playskillService;
+            _playerManager = (PlayerManager)playerService;
+            _stadiumManager = (StadiumManager)stadiumService;
         }
 
         // GET: api/User
@@ -97,8 +102,8 @@ namespace FootballManager.Api.Controllers
             return new EntityHttpResponse(System.Net.HttpStatusCode.BadRequest, "Ingen bruger med denne email eller adgangskode", false);
 
         }
-        [HttpPost("Register/{email}/{password}/{username}"), ResponseType(typeof(void))]
-        public EntityHttpResponse Register(string email, string password, string username, [FromBody] Adress adress)
+        [HttpGet("Register/{email}/{password}/{username}"), ResponseType(typeof(void))]
+        public EntityHttpResponse Register(string email, string password, string username)
         {
             IUser user = null;
             StringBuilder error = new StringBuilder();
@@ -109,81 +114,42 @@ namespace FootballManager.Api.Controllers
             if (user != null)
                 error.AppendLine("Denne email er allerede i brug");
             //todo: Password kalitesi icin metod yaz ve kontrol ettir.
-            if (user!=null)
+            if (user != null)
             {
                 return new EntityHttpResponse(System.Net.HttpStatusCode.BadRequest, error.ToString(), false);
             }
             else
             {
-                //_postalcodeManager.Add(adress.PostalCode);
-                //_adressmanager.Add(adress);
-
-
-                #region 
-
-                //IStadium stadium = new Stadium()
-                //{
-                //    Capacity = 3000,
-                //    Founded = DateTime.Now.Year,
-                //    StadiumName = $"{username}s stadium"
-                //};
-                //_stadiumManager.Add((Stadium)stadium);
-
-                //INation nation = new Nation
-                //{
-                //    Nationality = "Danemark"
-                //};
-                //_nationManager.Add((Nation)nation);
-
-                //ICoachSkill coachSkill = new CoachSkill
-                //{
-
-                //};
-
-                //ICoach coach = new Coach()
-                //{
-                //    Firstname = "Abdulla",
-                //    LastName = "Oksum",
-                //    Age = 39,
-                //    Nation = (Nation)nation,
-                //    WeeklyPaid = 1000,
-                //    CoachSkill = (CoachSkill)coachSkill
-
-                //    // todo: buraya kadar gelmistik 27-11-2019
-                //};
-                //_coachManager.Add((Coach)coach);
-
-
-
-                //ITeam team = new Team()
-                //{
-                //    Founded = DateTime.Now.Year,
-                //    Stadium = (Stadium)stadium,
-                //    ClubName = $"{username}s Football Club",
-                //};
-                //_teamManager.Add((Team)team);
-
-                #endregion
-                IUser newuser = new User()
+                User newuser = new User()
                 {
                     TagName = username,
                     Email = email,
                     Password = password,
-                    //Adress = adress,
-                    //Team = (Team)team
                 };
+                try
+                {
+                    newuser.Team = TeamMethods.CreateFinishedTeam(
+                                  newuser,
+                                  _teamManager,
+                                  _stadiumManager,
+                                  _playerManager,
+                                  _playerskillManager,
+                                  _nationManager);
 
-                //todo: Dal kisminda IUser almasini sagla
-                _usermanager.Add((User)newuser);
+                }
+                catch 
+                {
+                    return new EntityHttpResponse(System.Net.HttpStatusCode.InternalServerError, "Der kunne desværre ikke oprettes en forbindelse til databasen. Prøv venligst igen senere.", false);
+                }
+                _usermanager.Add(newuser);
                 try
                 {
                     _usermanager.Save();
                 }
-                catch (Exception e)
+                catch 
                 {
-                    var x = e.InnerException;
+                     return new EntityHttpResponse(System.Net.HttpStatusCode.InternalServerError, "Der kunne desværre ikke oprettes en forbindelse til databasen. Prøv venligst igen senere.", false);
                 }
-
                 return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
             }
         }

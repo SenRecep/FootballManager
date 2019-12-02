@@ -13,12 +13,8 @@ namespace FootBallManager.Entities.Concrete
         public string Firstname { get; set; }
         [Required(ErrorMessage = "Efternavn skal indtastes")]
         public string LastName { get; set; }
-        [DataType(DataType.MultilineText, ErrorMessage = "Adressse skal udfyldes")]
-        public Adress Adress { get; set; }
-        public int Adressid { get; set; }
-        public string PhoneNumber { get; set; }
-        [DataType(DataType.EmailAddress, ErrorMessage = "Der er ikke indtastet en gyldig email")]
-        public string Email { get; set; }
+       
+       
         [Range(1, 150, ErrorMessage = "Alder skal være mellem 0 og 150")]
         public int Age { get; set; }
         [Required(ErrorMessage = "Højde skal indtastes")]
@@ -29,7 +25,7 @@ namespace FootBallManager.Entities.Concrete
         public Nation Nation { get; set; }
         public int Nationid { get; set; }
         [Required(ErrorMessage = "Valg en position for spilleren")]
-        public string Position { get; set; }
+        public Position Position { get; set; }
         [Required(ErrorMessage = "indtasts venligst fortrukne fod")]
         public string Foot { get; set; }
         [Required(ErrorMessage = "Indtast venligst ugentli løn for spilleren")]

@@ -9,16 +9,13 @@ namespace FootBallManager.Entities.Abstract
     {
          string Firstname { get; set; }
          string LastName { get; set; }
-         Adress Adress { get; set; }
-         int Adressid { get; set; }
-         string PhoneNumber { get; set; }
-         string Email { get; set; }
+      
          int Age { get; set; }
          double Height { get; set; }
          double Weight { get; set; }
          Nation Nation { get; set; }
          int Nationid { get; set; }
-         string Position { get; set; }
+         Position Position { get; set; }
          string Foot { get; set; }
          double WeeklyPaid { get; set; }
          double MarketPriceValue { get; set; }

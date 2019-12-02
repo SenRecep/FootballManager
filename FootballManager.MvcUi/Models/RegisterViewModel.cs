@@ -23,8 +23,5 @@ namespace FootballManager.MvcUi.Models
         [Required(ErrorMessage = "Udfyld Email adresse")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "Udfyld adresse")]
-        public Adress Adress { get; set; }
     }
 }
