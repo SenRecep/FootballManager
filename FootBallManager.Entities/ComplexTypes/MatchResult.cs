@@ -6,8 +6,8 @@ namespace FootBallManager.Entities.ComplexTypes
 {
     public enum MatchResult
     {
-        Win,
-        Draw,
-        Loose
+        Win=3,
+        Draw=1,
+        Lose=0
     }
 }

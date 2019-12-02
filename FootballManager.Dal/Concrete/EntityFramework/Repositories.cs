@@ -1,12 +1,10 @@
-﻿
-
-using FootballManager.Dal.Abstract;
+﻿using FootballManager.Dal.Abstract;
 using FootballManager.Dal.Concrete.EntityFramework.Contexts;
+using FootBallManager.Entities.ComplexTypes;
 using FootBallManager.Entities.Concrete;
 
 namespace FootballManager.Dal.Concrete.EntityFramework
 {
-
     public class EfAdresstDal : EfEntityRepostoryBase<Adress, ManagerContext>, IAdressDal { }
     public class EfCoachtDal : EfEntityRepostoryBase<Coach, ManagerContext>, ICoachDal { }
     public class EfCoachSkillDal : EfEntityRepostoryBase<CoachSkill, ManagerContext>, ICoachSkillsDal { }
@@ -19,5 +17,7 @@ namespace FootballManager.Dal.Concrete.EntityFramework
     public class EfTeamDal : EfEntityRepostoryBase<Team, ManagerContext>, ITeamDal { }
     public class EfTrophyDal : EfEntityRepostoryBase<Trophy, ManagerContext>, ITrophyDal { }
     public class EfUserDal : EfEntityRepostoryBase<User, ManagerContext>, IUserDal { }
-
+    public class EfSeasonDal : EfEntityRepostoryBase<Season, ManagerContext>, ISeasonDal { }
+    public class EfLeagueDal : EfEntityRepostoryBase<League, ManagerContext>, ILeagueDal { }
+    public class EfMatchesDal : EfEntityRepostoryBase<Matches, ManagerContext>, IMatchesDal { }
 }

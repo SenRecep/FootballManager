@@ -22,27 +22,27 @@ namespace FootballManager.Dal.Concrete.EntityFramework
             table = dbContext.Set<TEntity>();
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             var _entity = dbContext.Entry<TEntity>(entity);
             _entity.State = EntityState.Added;
         }
 
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             entity.IsActive = false;
             var _entity = dbContext.Entry<TEntity>(entity);
             _entity.State = EntityState.Modified;
         }
 
-        public void Delete(Expression<Func<TEntity, bool>> filter)
+        public virtual void Delete(Expression<Func<TEntity, bool>> filter)
         {
             IQueryable<TEntity> entities = table.Where(filter);
             foreach (TEntity entity in entities)
                 Delete(entity);
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter, params string[] navigations)
+        public virtual TEntity Get(Expression<Func<TEntity, bool>> filter, params string[] navigations)
         {
             var set = table.AsQueryable();
             navigations.ToList().ForEach(item => {
@@ -51,7 +51,7 @@ namespace FootballManager.Dal.Concrete.EntityFramework
             return set.FirstOrDefault(filter);
         }
 
-        public ICollection<TEntity> GetAll(params string[] navigations)
+        public virtual ICollection<TEntity> GetAll(params string[] navigations)
         {
             var set = table.AsQueryable();
             navigations.ToList().ForEach(item => {
@@ -60,7 +60,7 @@ namespace FootballManager.Dal.Concrete.EntityFramework
             return set.ToList();
         }
 
-        public ICollection<TEntity> GetMany(Expression<Func<TEntity, bool>> filter = null, params string[] navigations)
+        public virtual ICollection<TEntity> GetMany(Expression<Func<TEntity, bool>> filter = null, params string[] navigations)
         {
             var set = table.AsQueryable();
             navigations.ToList().ForEach(item => {
@@ -69,27 +69,27 @@ namespace FootballManager.Dal.Concrete.EntityFramework
             return filter == null ? set.ToList() : set.Where(filter).ToList();
         }
 
-        public void Save()
+        public virtual void Save()
         {
             dbContext.SaveChanges();
         }
 
-        public int _Save()
+        public virtual int _Save()
         {
             return dbContext.SaveChanges();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             var _entity = dbContext.Entry<TEntity>(entity);
             _entity.State = EntityState.Modified;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             dbContext.DisposeAsync();
         }
-        public void Build()
+        public virtual void Build()
         {
             dbContext = new TContext();
         }

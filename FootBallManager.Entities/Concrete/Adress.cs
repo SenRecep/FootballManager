@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FootBallManager.Entities.Concrete
 {
-    public class Adress : EntityBase, IAdress
+    public partial class Adress : EntityBase, IAdress
     {
         [Required(ErrorMessage ="Indtast en gyldig Postnummer")]
-        public Postalcode PostalCode { get; set; }
+        public virtual Postalcode PostalCode { get; set; }
         public int PostalCodeid { get; set; }
         [Required(ErrorMessage ="Indtast en adresse")]
         public string Adresses { get; set; }

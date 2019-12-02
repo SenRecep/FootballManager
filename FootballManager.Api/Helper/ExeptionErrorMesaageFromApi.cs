@@ -1,5 +1,6 @@
 ﻿using FootballManager.Bll.Concrete;
 using FootballManager.Core.Entities;
+using FootBallManager.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http.ModelBinding;
 using static FootballManager.Bll.Concrete.Validation.ValidationIsNullOrWhitespace;
+using static FootballManager.Bll.Helpers.ToPasswordRepository;
 namespace FootballManager.Api.Helper
 {
     public static class ExeptionErrorMesaageFromApi
@@ -34,11 +36,15 @@ namespace FootballManager.Api.Helper
                 try
                 {
                     if (status)
+                    {
+                        if (entity is User user)
+                            user.Password = PasswordCryptographyCombine(user.Password);
                         manager.Add(entity);
+                    }
                     else
                         manager.Update(entity);
                     manager.Save();
-                    return new EntityHttpResponse(HttpStatusCode.OK, "Gennemført",true);
+                    return new EntityHttpResponse(HttpStatusCode.OK, "Gennemført", true);
                 }
                 catch (Exception ex)
                 {

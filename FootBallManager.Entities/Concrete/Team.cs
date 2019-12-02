@@ -23,6 +23,7 @@ namespace FootBallManager.Entities.Concrete
         public List<Player> Players { get; set; }
         
         public Coach Coach{ get; set; }
+        //todo: Coach id verilmemis
 
         public virtual List<Trophy> Trophies { get; set; }
 

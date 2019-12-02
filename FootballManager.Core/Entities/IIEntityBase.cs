@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FootballManager.Core.Entities
 {
-    interface IEntityBase
+    public interface IEntityBase
     {
         int id { get; set; }
 

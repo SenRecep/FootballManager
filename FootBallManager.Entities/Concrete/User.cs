@@ -9,22 +9,24 @@ namespace FootBallManager.Entities.Concrete
 {
    public class User :EntityBase, IUser
     {
-        [Required(ErrorMessage ="Indtast fornavn")]
         public string Firstname { get; set; }
-        [Required(ErrorMessage ="Indtast efternavn")]
         public string Lastname { get; set; }
         [DataType(DataType.MultilineText)]
-        [Required(ErrorMessage ="ugyldig adresse")]
-        public Adress Adress{ get; set; }
+        public virtual Adress Adress{ get; set; }
         public int Adressid{ get; set; }
-        [Required]
         public bool IsAdmin { get; set; } = false;
         [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage ="ugyldig email adresse")]
+        [Required(ErrorMessage = "ugyldig email adresse")]
         public string Email { get; set; }
         [DataType(DataType.Password)]
-        [Required(ErrorMessage ="Indtast en gyldig adgangskode")]
+        [Required(ErrorMessage = "Indtast en gyldig adgangskode")]
         public string Password { get; set; }
+        //todo:Required Yap
+        public string TagName { get; set; }
 
+        public decimal Money { get; set; }
+
+        public Team Team { get; set; }
+        public int Teamid { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FootBallManager.Entities.Concrete;
+using FootBallManager.Entities.ComplexTypes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,9 @@ namespace FootballManager.Dal.Concrete.EntityFramework.Contexts
         public DbSet<Team> Teams { get; set; }
         public DbSet<Trophy> Trophies { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<League> Leagues { get; set; }
+        public DbSet<Matches> Matches { get; set; }
 
     }
 }

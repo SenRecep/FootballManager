@@ -11,10 +11,10 @@ namespace FootballManager.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PostalcodeController : BaseController
+    public class PostalCodeController : BaseController
     {
         private readonly PostalcodeManager _Postalcodemanager;
-        public PostalcodeController(IPostalcodeService Postalcode)
+        public PostalCodeController(IPostalcodeService Postalcode)
         {
             _Postalcodemanager = (PostalcodeManager)Postalcode;
         }
@@ -50,7 +50,7 @@ namespace FootballManager.Api.Controllers
         }
 
         // DELETE: api/Postalcode/Delete/5
-        [HttpDelete, Route("{id}"), ResponseType(typeof(string))]
+        [HttpDelete, Route("{id}"), ResponseType(typeof(void))]
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse Delete(int id)
         {
