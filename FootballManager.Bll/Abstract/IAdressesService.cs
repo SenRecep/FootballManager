@@ -9,6 +9,6 @@ namespace FootballManager.Bll.Abstract
     public interface IAdressesService
     {
         ICollection<Adress> GetAllLoadPostalCode(PostalcodeManager postalcodeManager);
-        Adress GetLoadPostalCode(int id,PostalcodeManager postalcodeManager);
+        Adress GetLoadPostalCode(int? id,PostalcodeManager postalcodeManager);
     }
 }

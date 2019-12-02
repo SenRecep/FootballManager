@@ -115,65 +115,74 @@ namespace FootballManager.Api.Controllers
             }
             else
             {
-                _postalcodeManager.Add(adress.PostalCode);
-                _adressmanager.Add(adress);
-
-              
-
-                IStadium stadium = new Stadium()
-                {
-                    Capacity=3000,
-                    Founded=DateTime.Now.Year,
-                    StadiumName=$"{username}s stadium"
-                };
-                _stadiumManager.Add((Stadium)stadium);
-
-                INation nation = new Nation
-                {
-                    Nationality = "Danemark"
-                };
-                _nationManager.Add((Nation)nation);
-
-                ICoachSkill coachSkill = new CoachSkill
-                {
-                     
-                };
-
-                ICoach coach = new Coach()
-                {
-                    Firstname = "Abdulla",
-                    LastName = "Oksum",
-                     Age = 39,
-                      Nation = (Nation)nation,
-                      WeeklyPaid =1000,
-                      CoachSkill = (CoachSkill)coachSkill
-
-                    // todo: buraya kadar gelmistik 27-11-2019
-                };
-                _coachManager.Add((Coach)coach);
+                //_postalcodeManager.Add(adress.PostalCode);
+                //_adressmanager.Add(adress);
 
 
+                #region 
 
-                ITeam team = new Team()
-                {
-                    Founded=DateTime.Now.Year,
-                    Stadium=(Stadium)stadium,
-                    ClubName= $"{username}s Football Club",
-                };
-                _teamManager.Add((Team)team);
+                //IStadium stadium = new Stadium()
+                //{
+                //    Capacity = 3000,
+                //    Founded = DateTime.Now.Year,
+                //    StadiumName = $"{username}s stadium"
+                //};
+                //_stadiumManager.Add((Stadium)stadium);
+
+                //INation nation = new Nation
+                //{
+                //    Nationality = "Danemark"
+                //};
+                //_nationManager.Add((Nation)nation);
+
+                //ICoachSkill coachSkill = new CoachSkill
+                //{
+
+                //};
+
+                //ICoach coach = new Coach()
+                //{
+                //    Firstname = "Abdulla",
+                //    LastName = "Oksum",
+                //    Age = 39,
+                //    Nation = (Nation)nation,
+                //    WeeklyPaid = 1000,
+                //    CoachSkill = (CoachSkill)coachSkill
+
+                //    // todo: buraya kadar gelmistik 27-11-2019
+                //};
+                //_coachManager.Add((Coach)coach);
+
+
+
+                //ITeam team = new Team()
+                //{
+                //    Founded = DateTime.Now.Year,
+                //    Stadium = (Stadium)stadium,
+                //    ClubName = $"{username}s Football Club",
+                //};
+                //_teamManager.Add((Team)team);
+
+                #endregion
                 IUser newuser = new User()
                 {
                     TagName = username,
                     Email = email,
                     Password = password,
-                    Adress = adress,
-                    Team = (Team)team
+                    //Adress = adress,
+                    //Team = (Team)team
                 };
-
 
                 //todo: Dal kisminda IUser almasini sagla
                 _usermanager.Add((User)newuser);
-                _usermanager.Save();
+                try
+                {
+                    _usermanager.Save();
+                }
+                catch (Exception e)
+                {
+                    var x = e.InnerException;
+                }
 
                 return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
             }

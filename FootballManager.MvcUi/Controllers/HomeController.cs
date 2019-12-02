@@ -19,6 +19,11 @@ namespace FootballManager.MvcUi.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.IsLogin = IsLogin;
+            if (IsLogin)
+            {
+                return View(LoginUser);
+            }
             return View();
         }
     }

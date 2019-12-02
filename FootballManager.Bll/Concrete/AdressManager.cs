@@ -21,7 +21,7 @@ namespace FootballManager.Bll.Concrete
             return adresses;
         }
 
-        public Adress GetLoadPostalCode(int id, PostalcodeManager postalcodeManager)
+        public Adress GetLoadPostalCode(int? id, PostalcodeManager postalcodeManager)
         {
             var adress = Get(x => x.id == id);
             if (adress != null)

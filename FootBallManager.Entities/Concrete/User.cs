@@ -13,7 +13,7 @@ namespace FootBallManager.Entities.Concrete
         public string Lastname { get; set; }
         [DataType(DataType.MultilineText)]
         public virtual Adress Adress{ get; set; }
-        public int Adressid{ get; set; }
+        public int? Adressid{ get; set; }
         public bool IsAdmin { get; set; } = false;
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "ugyldig email adresse")]
@@ -27,6 +27,6 @@ namespace FootBallManager.Entities.Concrete
         public decimal Money { get; set; }
 
         public Team Team { get; set; }
-        public int Teamid { get; set; }
+        public int? Teamid { get; set; }
     }
 }

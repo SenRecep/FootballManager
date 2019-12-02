@@ -9,7 +9,7 @@ namespace FootBallManager.Entities.Concrete
     {
         [Required(ErrorMessage ="Indtast en gyldig Postnummer")]
         public virtual Postalcode PostalCode { get; set; }
-        public int PostalCodeid { get; set; }
+        public int? PostalCodeid { get; set; }
         [Required(ErrorMessage ="Indtast en adresse")]
         public string Adresses { get; set; }
     }

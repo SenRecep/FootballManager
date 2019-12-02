@@ -9,6 +9,6 @@ namespace FootBallManager.Entities.Abstract
     {
         string Adresses { get; set; }
         Postalcode PostalCode { get; set; }
-        int PostalCodeid { get; set; }
+        int? PostalCodeid { get; set; }
     }
 }
