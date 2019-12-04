@@ -13,8 +13,6 @@ namespace FootBallManager.Entities.Concrete
         public string Firstname { get; set; }
         [Required(ErrorMessage = "Efternavn skal indtastes")]
         public string LastName { get; set; }
-       
-       
         [Range(1, 150, ErrorMessage = "Alder skal være mellem 0 og 150")]
         public int Age { get; set; }
         [Required(ErrorMessage = "Højde skal indtastes")]

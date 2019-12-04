@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FootballManager.Dal.Migrations
 {
-    public partial class _inital : Migration
+    public partial class _xinital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -301,14 +301,11 @@ namespace FootballManager.Dal.Migrations
                     IsActive = table.Column<bool>(nullable: false),
                     Firstname = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
-                    Adressid = table.Column<int>(nullable: false),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
                     Height = table.Column<double>(nullable: false),
                     Weight = table.Column<double>(nullable: false),
                     Nationid = table.Column<int>(nullable: false),
-                    Position = table.Column<string>(nullable: false),
+                    Position = table.Column<int>(nullable: false),
                     Foot = table.Column<string>(nullable: false),
                     WeeklyPaid = table.Column<double>(nullable: false),
                     MarketPriceValue = table.Column<double>(nullable: false),
@@ -320,12 +317,6 @@ namespace FootballManager.Dal.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Players_Adresses_Adressid",
-                        column: x => x.Adressid,
-                        principalTable: "Adresses",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Players_Nations_Nationid",
                         column: x => x.Nationid,
@@ -474,11 +465,6 @@ namespace FootballManager.Dal.Migrations
                 name: "IX_Matches_SecondTeamid",
                 table: "Matches",
                 column: "SecondTeamid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Players_Adressid",
-                table: "Players",
-                column: "Adressid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Players_Nationid",

@@ -14,7 +14,7 @@ namespace FootballManager.Api.Controllers
     public class PlayerController : BaseController
     {
         private readonly PlayerManager _playerManager;
-        public PlayerController(IAdressesService player)
+        public PlayerController(IPlayerService player)
         {
             _playerManager = (PlayerManager)player;
         }

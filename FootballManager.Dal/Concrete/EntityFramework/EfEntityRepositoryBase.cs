@@ -11,7 +11,7 @@ namespace FootballManager.Dal.Concrete.EntityFramework
 {
    public class EfEntityRepostoryBase<TEntity, TContext> : IEntityRepostory<TEntity>
          where TEntity : EntityBase, new()
-        where TContext : DbContext, new()
+         where TContext : DbContext, new()
     {
         private DbContext dbContext = null;
         private DbSet<TEntity> table = null;

@@ -326,9 +326,6 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Adressid")
-                        .HasColumnType("int");
-
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
@@ -337,9 +334,6 @@ namespace FootballManager.Dal.Migrations
 
                     b.Property<int>("CreateUserid")
                         .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Firstname")
                         .IsRequired()
@@ -368,18 +362,14 @@ namespace FootballManager.Dal.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("PlayerSkillid")
                         .HasColumnType("int");
 
                     b.Property<int?>("PlayerSkillid1")
                         .HasColumnType("int");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Teamid")
                         .HasColumnType("int");
@@ -397,8 +387,6 @@ namespace FootballManager.Dal.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("id");
-
-                    b.HasIndex("Adressid");
 
                     b.HasIndex("Nationid");
 
@@ -730,12 +718,6 @@ namespace FootballManager.Dal.Migrations
 
             modelBuilder.Entity("FootBallManager.Entities.Concrete.Player", b =>
                 {
-                    b.HasOne("FootBallManager.Entities.Concrete.Adress", "Adress")
-                        .WithMany()
-                        .HasForeignKey("Adressid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FootBallManager.Entities.Concrete.Nation", "Nation")
                         .WithMany()
                         .HasForeignKey("Nationid")

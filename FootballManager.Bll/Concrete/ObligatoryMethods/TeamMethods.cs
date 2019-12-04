@@ -19,9 +19,8 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             {
                 ClubName = $"{user.TagName}'s Team",
                 Founded = DateTime.Now.Year,
-                Stadium = StadiumMethod.CreateStadium(user),
-                Players = PlayerMethod.CreatePlayers().ToList(),
-            };
+                Stadium = StadiumMethod.CreateStadium(user)
+        };
             return team;
         }
 
@@ -46,20 +45,21 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             Team team = CreateTeam(user);
             stadiumManager.Add(team.Stadium);
             stadiumManager.Save();
+            teamManager.Add(team);
+            teamManager.Save();
+            team.Players = PlayerMethod.CreatePlayers().ToList();
             foreach (Player player in team.Players)
             {
                 nationManager.Add(player.Nation);
                 nationManager.Save();
                 playerSkillManager.Add(player.PlayerSkill);
                 playerSkillManager.Save();
-                var x = 1;
                 playerManager.Add(player);
                 playerManager.Save();
-                var y = 2;
             }
-            teamManager.Add(team);
             teamManager.Save();
             return team;
+
         }
     }
 }

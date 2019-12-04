@@ -28,13 +28,13 @@ namespace FootballManager.Api.Controllers
         private readonly PlayerSkillManager _playerskillManager;
         private readonly PlayerManager _playerManager;
         private readonly StadiumManager _stadiumManager;
-        
+
 
         public UserController(
             IUserService user,
             IAdressesService adressesService,
             IPostalcodeService postalcodeService,
-            ITeamService  teamService,
+            ITeamService teamService,
             INationService nationService,
             IPlayerSkillService playskillService,
             IPlayerService playerService,
@@ -120,14 +120,14 @@ namespace FootballManager.Api.Controllers
             }
             else
             {
-                User newuser = new User()
-                {
-                    TagName = username,
-                    Email = email,
-                    Password = password,
-                };
                 try
                 {
+                    User newuser = new User()
+                    {
+                        TagName = username,
+                        Email = email,
+                        Password = password,
+                    };
                     newuser.Team = TeamMethods.CreateFinishedTeam(
                                   newuser,
                                   _teamManager,
@@ -136,19 +136,12 @@ namespace FootballManager.Api.Controllers
                                   _playerskillManager,
                                   _nationManager);
 
-                }
-                catch 
-                {
-                    return new EntityHttpResponse(System.Net.HttpStatusCode.InternalServerError, "Der kunne desværre ikke oprettes en forbindelse til databasen. Prøv venligst igen senere.", false);
-                }
-                _usermanager.Add(newuser);
-                try
-                {
+                    _usermanager.Add(newuser);
                     _usermanager.Save();
                 }
-                catch 
+                catch (Exception E)
                 {
-                     return new EntityHttpResponse(System.Net.HttpStatusCode.InternalServerError, "Der kunne desværre ikke oprettes en forbindelse til databasen. Prøv venligst igen senere.", false);
+                    return new EntityHttpResponse(System.Net.HttpStatusCode.InternalServerError, "Der kunne desværre ikke oprettes en forbindelse til databasen. Prøv venligst igen senere.", false);
                 }
                 return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
             }
