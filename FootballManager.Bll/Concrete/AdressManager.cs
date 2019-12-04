@@ -11,6 +11,7 @@ namespace FootballManager.Bll.Concrete
     {
         public AdressManager(IAdressDal repostory) : base(repostory) { }
 
+
         public ICollection<Adress> GetAllLoadPostalCode(PostalcodeManager postalcodeManager)
         {
             var adresses = GetAll();

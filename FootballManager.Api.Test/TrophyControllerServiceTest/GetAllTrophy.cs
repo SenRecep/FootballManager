@@ -3,24 +3,26 @@ using FootballManager.Bll.Abstract;
 using FootballManager.Bll.Abstract.Services;
 using FootballManager.Bll.Concrete;
 using FootballManager.Dal.Concrete.EntityFramework;
+using FootBallManager.Entities.Concrete;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FootballManager.Api.Test.TrophyControllerServiceTest
+namespace FootballManager.Api.Fact.TrophyControllerServiceTest
 {
-   public class GetAllTrophy
-    {
-        [Test]
-        public void ReturnNullNoTrophyExist()
-        {
-            //Arrance
-            //TrophyController trophy = new TrophyController(new TrophyManager(new EfTrophyDal()));
-            ////ACT
-            //trophy = null;
-            ////Assert
-            //Assert.AreEqual(trophy, trophy);
-        }
-    }
+   //public class GetAllTrophy
+   // {
+   //     [Test]
+   //     //public void ReturnNullNoTrophyExist()
+   //     //{
+   //     //    //Arrance
+   //     //    TrophyController trophy = new TrophyController(new TrophyManager(new EfTrophyDal()));
+   //     //    //ACT
+   //     //    trophy = null;
+   //     //    //Assert
+   //     //    Assert.AreEqual(trophy, trophy);
+   //     //}
+      
+   // }
 }

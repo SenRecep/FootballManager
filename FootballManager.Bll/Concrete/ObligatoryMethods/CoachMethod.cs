@@ -15,5 +15,6 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             };
             return coach;
         }
+        
     }
 }

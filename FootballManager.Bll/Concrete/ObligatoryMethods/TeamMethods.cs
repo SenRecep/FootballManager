@@ -8,6 +8,11 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
 {
     public static class TeamMethods
     {
+        /// <summary>
+        /// Create new Team for User
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static Team CreateTeam(User user)
         {
             Team team = new Team()
@@ -19,6 +24,17 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             };
             return team;
         }
+
+        /// <summary>
+        /// Saving new Team to database
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="teamManager"></param>
+        /// <param name="stadiumManager"></param>
+        /// <param name="playerManager"></param>
+        /// <param name="playerSkillManager"></param>
+        /// <param name="nationManager"></param>
+        /// <returns></returns>
         public static Team CreateFinishedTeam(
             User user,
             TeamManager teamManager,
@@ -36,8 +52,10 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
                 nationManager.Save();
                 playerSkillManager.Add(player.PlayerSkill);
                 playerSkillManager.Save();
+                var x = 1;
                 playerManager.Add(player);
                 playerManager.Save();
+                var y = 2;
             }
             teamManager.Add(team);
             teamManager.Save();

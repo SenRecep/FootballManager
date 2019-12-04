@@ -5,8 +5,13 @@ using System.Text;
 
 namespace FootballManager.Bll.Concrete.ObligatoryMethods
 {
-   public static class StadiumMethod
+    public static class StadiumMethod
     {
+        /// <summary>
+        ///Create new Stadium 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static Stadium CreateStadium(User user)
         {
             Stadium stadium = new Stadium

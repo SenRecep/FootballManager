@@ -9,6 +9,10 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
 {
     public static class PlayerMethod
     {
+        /// <summary>
+        /// Creating new player
+        /// </summary>
+        /// <returns></returns>
         public static Player CreatePlayer()
         {
             Player player = new Player
@@ -26,6 +30,10 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             player.WeeklyPaid = player.Age > 32 ? FakeData.NumberData.GetNumber(1000, 5000) : FakeData.NumberData.GetNumber(30000, 80000);
             return player;
         }
+        /// <summary>
+        /// Creating a new Players and return them in list
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<Player> CreatePlayers()
         {
             Array positions = Enum.GetValues(typeof(Position));

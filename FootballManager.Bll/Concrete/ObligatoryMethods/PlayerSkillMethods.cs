@@ -8,6 +8,8 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
 {
     public static class PlayerSkillMethods
     {
+
+
         public static PlayerSkill CreatePayerSkills(Position position)
         {
             PlayerSkill playerSkill = null;
@@ -28,6 +30,10 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             }
             return playerSkill;
         }
+        /// <summary>
+        /// Given skills for Goalkepers
+        /// </summary>
+        /// <returns></returns>
         public static PlayerSkill GoalKeeperSkills()
         {
             return new PlayerSkill()
@@ -38,6 +44,10 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
                 Attacking = FakeData.NumberData.GetNumber(0, 4),
                 Speed = FakeData.NumberData.GetNumber(5, 10)
             };
+            /// <summary>
+            /// Given skills for Defensive player
+            /// </summary>
+            /// <returns></returns>
         }
         public static PlayerSkill DefensiveSkills()
         {
@@ -50,6 +60,10 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
                 Speed = FakeData.NumberData.GetNumber(5, 10)
             };
         }
+        /// <summary>
+        /// Given skills for Middelfield player
+        /// </summary>
+        /// <returns></returns>
         public static PlayerSkill MiddelFielsSkills()
         {
             return new PlayerSkill()
@@ -61,6 +75,11 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
                 Speed = FakeData.NumberData.GetNumber(5, 10)
             };
         }
+
+        /// <summary>
+        /// Given skills for striker
+        /// </summary>
+        /// <returns></returns>
         public static PlayerSkill AttackerSkills()
         {
             return new PlayerSkill()
@@ -71,6 +90,7 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
                 Attacking = FakeData.NumberData.GetNumber(8, 20),
                 Speed = FakeData.NumberData.GetNumber(5, 10)
             };
+
         }
     }
 }

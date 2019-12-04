@@ -71,6 +71,7 @@ namespace FootballManager.Bll.Helpers
             if (response.IsSuccessStatusCode)
                 return await response.Content.ReadAsAsync<EntityHttpResponse>();
             return new EntityHttpResponse();
+         
         }
     }
 }
