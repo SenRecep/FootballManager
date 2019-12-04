@@ -113,7 +113,7 @@ namespace FootballManager.Api.Controllers
             user = _usermanager.Get(x => x.Email == email);
             if (user != null)
                 error.AppendLine("Denne email er allerede i brug");
-            //todo: Password kalitesi icin metod yaz ve kontrol ettir.
+            //todo: Check om Password kvalitet er god nok
             if (user != null)
             {
                 return new EntityHttpResponse(System.Net.HttpStatusCode.BadRequest, error.ToString(), false);
@@ -135,6 +135,7 @@ namespace FootballManager.Api.Controllers
                                   _playerManager,
                                   _playerskillManager,
                                   _nationManager);
+                    
 
                     _usermanager.Add(newuser);
                     _usermanager.Save();

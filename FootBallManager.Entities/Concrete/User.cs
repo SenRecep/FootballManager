@@ -9,7 +9,9 @@ namespace FootBallManager.Entities.Concrete
 {
    public class User :EntityBase, IUser
     {
+        [DataType(DataType.Text)]
         public string Firstname { get; set; }
+        [DataType(DataType.Text)]
         public string Lastname { get; set; }
         [DataType(DataType.MultilineText)]
         public virtual Adress Adress{ get; set; }
