@@ -45,7 +45,11 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
                     object value = positions.GetValue(j);
                     player.Position = (Position)value;
                     player.PlayerSkill = PlayerSkillMethods.CreatePayerSkills(player.Position);
+                   
                 }
+                
+                
+                player.Number = i + 1;
                 yield return player;
             }
         }
