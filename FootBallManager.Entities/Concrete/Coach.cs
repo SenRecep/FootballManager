@@ -21,7 +21,7 @@ namespace FootBallManager.Entities.Concrete
         public int? Nationid { get; set; }
         [Required]
         public double WeeklyPaid { get; set; } = 0;
-        [Required]
+       
         public CoachSkill CoachSkill { get; set; }
         public int? CoachSkillid { get; set; }
     }

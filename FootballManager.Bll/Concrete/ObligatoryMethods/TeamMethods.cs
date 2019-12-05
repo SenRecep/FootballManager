@@ -19,8 +19,11 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             {
                 ClubName = $"{user.TagName}'s Team",
                 Founded = DateTime.Now.Year,
-                Stadium = StadiumMethod.CreateStadium(user)
-        };
+                Stadium = StadiumMethod.CreateStadium(user), 
+                
+              //Coach = CoachMethod.CreateCoach()
+                
+            };
             return team;
         }
 
@@ -33,6 +36,8 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
         /// <param name="playerManager"></param>
         /// <param name="playerSkillManager"></param>
         /// <param name="nationManager"></param>
+        /// <param name="coachManager"></param>
+        /// <param name="coachSkillManager"></param>
         /// <returns></returns>
         public static Team CreateFinishedTeam(
             User user,
@@ -40,9 +45,19 @@ namespace FootballManager.Bll.Concrete.ObligatoryMethods
             StadiumManager stadiumManager,
             PlayerManager playerManager,
             PlayerSkillManager playerSkillManager,
-            NationManager nationManager)
+            NationManager nationManager
+           // CoachManager coachManager,
+            //CoachSkillManager coachSkillManager
+          
+            )
         {
             Team team = CreateTeam(user);
+
+           // coachSkillManager.Add(team.Coach.CoachSkill);
+            //coachSkillManager.Save();
+              //  coachManager.Add(team.Coach);
+                //coachManager.Save();
+           
             stadiumManager.Add(team.Stadium);
             stadiumManager.Save();
             teamManager.Add(team);

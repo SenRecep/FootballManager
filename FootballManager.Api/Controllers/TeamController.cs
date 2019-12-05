@@ -58,5 +58,21 @@ namespace FootballManager.Api.Controllers
             _teamManager.Save();
             return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
         }
+
+        // GET: api/Team/Detail/5
+        //[ApiAuthorizeAttribute(Roles = "A")]
+        [HttpGet, Route("detail/{id}"), ResponseType(typeof(Team))]
+        public EntityHttpResponse GetDetail(int id)
+        {
+            Team x = _teamManager.Get(x => x.id == id);
+            if (x is null)
+            {
+                return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, false);
+            }
+            else
+                return new EntityHttpResponse(System.Net.HttpStatusCode.OK, x, true);
+
+        }
+
     }
 }

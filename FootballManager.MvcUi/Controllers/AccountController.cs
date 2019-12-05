@@ -51,10 +51,11 @@ namespace FootballManager.MvcUi.Controllers
         {
             if (registerViewModel.Password.Equals(registerViewModel.PasswordConfirmation))
             {
+                
                 registerViewModel.Password = PasswordCryptographyCombine(registerViewModel.Password);
                 EntityHttpResponse entityHttpResponse = await ApiCenter.GetAsync($"User/Register/{registerViewModel.Email}/{registerViewModel.Password}/{registerViewModel.UserName}");
                 if (entityHttpResponse.IsTrue)
-                    return RedirectToAction("Login");
+                    return RedirectToAction("Login",1);
                 else
                 {
                     TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);

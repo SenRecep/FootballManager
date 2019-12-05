@@ -8,23 +8,57 @@ using Microsoft.Extensions.Logging;
 using FootballManager.MvcUi.Models;
 using FootballManager.MvcUi.Services;
 using FootBallManager.Entities.Concrete;
+using FootballManager.Bll.Helpers;
+using FootballManager.Bll.Concrete;
 
 namespace FootballManager.MvcUi.Controllers
 {
     public class HomeController : BaseController
     {
+
         public HomeController(IUserSessionService userSessionService) : base(userSessionService)
         {
+
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(int id)
         {
             ViewBag.IsLogin = IsLogin;
             if (IsLogin)
             {
-                return View(LoginUser);
+                EntityHttpResponse entityHttpResponse = await ApiCenter.GetAsync($"User/Detail/{id}");
+                if (entityHttpResponse.IsTrue)
+                {
+                    User user = ApiCenter.getData<User>(entityHttpResponse);
+
+                    EntityHttpResponse entityHttpResponseTeam = await ApiCenter.GetAsync($"Team/Detail/{user.id}");
+                    if (entityHttpResponseTeam.IsTrue)
+                    {
+                        Team team = ApiCenter.getData<Team>(entityHttpResponseTeam);
+
+                        return View(new AccountListViewModel(user, team));
+                    }
+                    else
+                    {
+                        TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
+                        return View();
+                    }
+
+
+                }
+
+                else
+                {
+                    TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
+                    return View();
+                }
+
+
             }
             return View();
         }
+
+
     }
 }

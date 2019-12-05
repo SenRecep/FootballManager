@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FootballManager.Dal.Migrations
 {
-    public partial class _xinital : Migration
+    public partial class initi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

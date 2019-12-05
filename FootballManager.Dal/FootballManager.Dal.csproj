@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191204175255_initialnew.cs" />
+    <Compile Remove="Migrations\20191204175255_initialnew.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Complextypes\" />
   </ItemGroup>
 

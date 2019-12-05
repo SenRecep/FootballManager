@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballManager.Dal.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    [Migration("20191204132053__xinital")]
-    partial class _xinital
+    [Migration("20191204175345_initi")]
+    partial class initi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

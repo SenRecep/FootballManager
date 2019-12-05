@@ -28,6 +28,8 @@ namespace FootballManager.Api.Controllers
         private readonly PlayerSkillManager _playerskillManager;
         private readonly PlayerManager _playerManager;
         private readonly StadiumManager _stadiumManager;
+        private readonly CoachManager _coachManager;
+        private readonly CoachSkillManager _coachSkillManager;
 
 
         public UserController(
@@ -38,7 +40,9 @@ namespace FootballManager.Api.Controllers
             INationService nationService,
             IPlayerSkillService playskillService,
             IPlayerService playerService,
-            IStadiumService stadiumService)
+            IStadiumService stadiumService,
+            ICoachService coachService,
+            ICoachSkillService coachSkillService)
         {
             _usermanager = (UserManager)user;
             _adressmanager = (AdressManager)adressesService;
@@ -48,6 +52,8 @@ namespace FootballManager.Api.Controllers
             _playerskillManager = (PlayerSkillManager)playskillService;
             _playerManager = (PlayerManager)playerService;
             _stadiumManager = (StadiumManager)stadiumService;
+            _coachManager = (CoachManager)coachService;
+            _coachSkillManager = (CoachSkillManager)coachSkillService;
         }
 
         // GET: api/User
@@ -65,6 +71,23 @@ namespace FootballManager.Api.Controllers
         {
             return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _usermanager.GetLoadAdress(id, _adressmanager, _postalcodeManager), true);
         }
+
+        // GET: api/User/Detail/5
+        //[ApiAuthorizeAttribute(Roles = "A")]
+        [HttpGet, Route("detail/{id}"), ResponseType(typeof(User))]
+        public EntityHttpResponse GetDetail(int id)
+        {
+            User  x = _usermanager.Get(x => x.id == id);
+            if (x is null)
+            {
+                return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, false);
+            }
+            else
+                return new EntityHttpResponse(System.Net.HttpStatusCode.OK, x, true);
+            
+        }
+
+
 
         // POST: api/User/Create
         [EnableCors("AnotherPolicy")]
@@ -134,8 +157,10 @@ namespace FootballManager.Api.Controllers
                                   _stadiumManager,
                                   _playerManager,
                                   _playerskillManager,
-                                  _nationManager);
-                    
+                                  _nationManager
+                                  //_coachManager,
+                                  /*_coachSkillManager*/);
+
 
                     _usermanager.Add(newuser);
                     _usermanager.Save();
@@ -147,5 +172,25 @@ namespace FootballManager.Api.Controllers
                 return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
             }
         }
+
+        //[HttpGet("Register/{email}/{password}/{username}"), ResponseType(typeof(void))]
+        //public EntityHttpResponse GetAccountInfo(int id)
+        //{
+        //    IUser user = null;
+        //    StringBuilder error = new StringBuilder();
+        //    user = _usermanager.Get(x => x.id == id);
+        //    if (user is null)
+        //    {
+        //        error.AppendLine("Denne bruger findes ikke.");
+        //        return new EntityHttpResponse(System.Net.HttpStatusCode.BadRequest, error.ToString(), false);
+
+        //    }
+
+        //        return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
+        //    }
     }
+
+
+
 }
+
