@@ -20,9 +20,31 @@ namespace FootballManager.MvcUi.Controllers
         {
 
         }
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            ViewBag.IsLogin = IsLogin;
+            if (IsLogin)
+            {
+                EntityHttpResponse entityHttpResponse = await ApiCenter.GetAsync($"User");
+                if (entityHttpResponse.IsTrue)
+                {
+                    return View();
+
+                }
+                else
+                {
+                    TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
+                    return View();
+                }
+
+            }
+            return View();
+
+        }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> User(int id)
         {
             ViewBag.IsLogin = IsLogin;
             if (IsLogin)

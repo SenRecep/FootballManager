@@ -1,0 +1,24 @@
+﻿@model AccountListViewModel
+@{
+	ViewData["Title"] = "UserAccount";
+}
+
+<h1>
+	Brugernavn: @Model.User.TagName;
+</h1>
+<h1>
+	Fornavn: 	@Model.User.Firstname;
+
+</h1>
+<h1>
+	Efternavn:	@Model.User.Lastname;
+
+</h1>
+<h1>
+	Klubnavn:	@Model.Team.ClubName;
+
+</h1>
+<h1>
+	Stiftet:	@Model.Team.Founded
+
+</h1>
