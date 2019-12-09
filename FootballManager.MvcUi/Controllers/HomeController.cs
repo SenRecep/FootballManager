@@ -15,8 +15,8 @@ namespace FootballManager.MvcUi.Controllers
 {
     public class HomeController : BaseController
     {
-
-        public HomeController(IUserSessionService userSessionService) : base(userSessionService)
+        public HomeController(IUserSessionService userSessionService, IUserCookieService userCookieService) 
+            : base(userSessionService, userCookieService)
         {
         }
 
@@ -57,7 +57,7 @@ namespace FootballManager.MvcUi.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> User(int id)
+        public async Task<IActionResult> UserDetail(int id)
         {
             ViewBag.IsLogin = IsLogin;
             if (IsLogin)
@@ -96,8 +96,8 @@ namespace FootballManager.MvcUi.Controllers
 
             else
             {
-                
-                return View();
+
+                return RedirectToAction("Login", "Account");
             }
             
 

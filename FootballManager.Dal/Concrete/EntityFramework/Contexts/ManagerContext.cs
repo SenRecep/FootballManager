@@ -11,8 +11,8 @@ namespace FootballManager.Dal.Concrete.EntityFramework.Contexts
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-LN3BP89;Initial Catalog=QT;Integrated Security=True");
-            optionsBuilder.UseSqlServer(@"Server=tcp:avanceretprog.database.windows.net,1433;Initial Catalog=AvanceretProgrammering;Persist Security Info=False;User ID=Sisqo;Password=Menekse1-;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-LN3BP89;Initial Catalog=QT;Integrated Security=True");
+            //optionsBuilder.UseSqlServer(@"Server=tcp:avanceretprog.database.windows.net,1433;Initial Catalog=AvanceretProgrammering;Persist Security Info=False;User ID=Sisqo;Password=Menekse1-;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Adress> Adresses { get; set; }

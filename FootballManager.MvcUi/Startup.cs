@@ -27,6 +27,7 @@ namespace FootballManager.MvcUi
         {
             services.AddControllersWithViews();
             services.AddSingleton<IUserSessionService, UserSessionService>();
+            services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             
             services.AddSession();

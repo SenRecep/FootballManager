@@ -100,9 +100,6 @@ namespace FootballManager.Api.Controllers
                     IsPlayed = true,
                     ScoreFirstTeam = 1,
                     ScoreSecondTeam = 2
-                    ,
-                     
-
                 };
                 
                 return new EntityHttpResponse(System.Net.HttpStatusCode.OK, season, true);      

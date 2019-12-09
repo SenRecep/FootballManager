@@ -15,7 +15,8 @@ namespace FootballManager.MvcUi.Controllers
 {
     public class AccountController : BaseController
     {
-        public AccountController(IUserSessionService userSessionService) : base(userSessionService)
+        public AccountController(IUserSessionService userSessionService, IUserCookieService userCookieService) 
+            : base(userSessionService, userCookieService)
         {
         }
 
