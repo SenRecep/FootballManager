@@ -18,8 +18,8 @@ namespace FootballManager.MvcUi.Controllers
 
         public HomeController(IUserSessionService userSessionService) : base(userSessionService)
         {
-
         }
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
