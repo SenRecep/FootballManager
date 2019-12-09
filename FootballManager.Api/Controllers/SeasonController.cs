@@ -1,8 +1,16 @@
-﻿using System.Web.Http.Description;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Http.Description;
 using FootballManager.Api.Helper;
 using FootballManager.Bll.Abstract;
 using FootballManager.Bll.Concrete;
+using FootballManager.Bll.Concrete.ObligatoryMethods;
+using FootballManager.Bll.Helpers;
+using FootballManager.Dal.Abstract;
+using FootballManager.Dal.Concrete.EntityFramework;
+using FootBallManager.Entities.Abstract;
 using FootBallManager.Entities.ComplexTypes;
+using FootBallManager.Entities.Concrete;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using static FootballManager.Api.Helper.ExeptionErrorMesaageFromApi;
@@ -14,9 +22,13 @@ namespace FootballManager.Api.Controllers
     public class SeasonController : BaseController
     {
         private readonly SeasonManager _seasonmanager;
-        public SeasonController(ISeasonService Season)
+        private readonly LeagueManager _leagueManager;
+        private readonly TeamManager _teamManager;
+        public SeasonController(ISeasonService Season, ILeagueService league, ITeamService team)
         {
             _seasonmanager = (SeasonManager)Season;
+            _leagueManager = (LeagueManager)league;
+            _teamManager = (TeamManager)team;
         }
 
         // GET: api/Season
@@ -61,5 +73,55 @@ namespace FootballManager.Api.Controllers
             _seasonmanager.Save();
             return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
         }
+
+
+        // DELETE: api/Season/CreateSeason
+        [HttpGet("Season"), ResponseType(typeof(void))]
+        public EntityHttpResponse CreateSeason()
+        {
+            ISeason season = new Season()
+            {
+                Date = DateTime.Now,
+
+            };
+                try
+                {
+                League Liga = new League()
+                {
+                    Season = (Season)season,
+                };
+                Liga.Teams.Add(_teamManager.Get(x=> x.IsActive == true));
+
+                List<Matches> matches = new List<Matches>();
+                Matches matches1 = new Matches()
+                {
+                    FirstTeam = _teamManager.Get(x => x.id == 1),
+                    SecondTeam = _teamManager.Get(x => x.id == 2),
+                    IsPlayed = true,
+                    ScoreFirstTeam = 1,
+                    ScoreSecondTeam = 2
+                    ,
+                     
+
+                };
+                
+                return new EntityHttpResponse(System.Net.HttpStatusCode.OK, season, true);      
+                }
+                catch (Exception E)
+                {
+                    return new EntityHttpResponse(System.Net.HttpStatusCode.InternalServerError, "Der kunne ikke oprettes en ny sæson.", false);
+                }
+              
+            }
+        }
+
+
+
+
+
+
+
+
+
+
     }
-}

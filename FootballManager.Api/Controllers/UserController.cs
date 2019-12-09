@@ -77,13 +77,13 @@ namespace FootballManager.Api.Controllers
         [HttpGet, Route("detail/{id}"), ResponseType(typeof(User))]
         public EntityHttpResponse GetDetail(int id)
         {
-            User  x = _usermanager.Get(x => x.id == id);
-            if (x is null)
+            User  user = _usermanager.Get(x => x.id == id);
+            if (user is null)
             {
                 return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, false);
             }
             else
-                return new EntityHttpResponse(System.Net.HttpStatusCode.OK, x, true);
+                return new EntityHttpResponse(System.Net.HttpStatusCode.OK, user, true);
             
         }
 
