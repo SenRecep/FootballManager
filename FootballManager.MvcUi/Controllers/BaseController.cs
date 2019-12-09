@@ -15,9 +15,10 @@ namespace FootballManager.MvcUi
         }
         public void LoginUserSave(User user)
         {
-            userCookieService.Set("LoginUser",user,60*24*10);//10 gun
-            LoadLoginUser = false;
-            LoadUser();
+            userCookieService.Set("LoginUser", user, 60 * 24 * 10);//10 gun
+            if (LoadLoginUser)
+                LoadLoginUser = false;
+            userSessionService.Set(user,"LoginUser");    
         }
         public void ClearUser()
         {
@@ -41,7 +42,7 @@ namespace FootballManager.MvcUi
         private void LoadUser()
         {
             User user = null;
-            if (LoadLoginUser)
+            if (!LoadLoginUser)
                 user = userCookieService.Get("LoginUser");
             LoadLoginUser = user != null;
             if (LoadLoginUser)

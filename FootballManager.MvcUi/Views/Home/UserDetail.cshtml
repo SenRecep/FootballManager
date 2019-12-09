@@ -1,41 +1,20 @@
 ﻿@model AccountListViewModel
 @{
-	ViewData["Title"] = "UserAccount";
+    ViewData["Title"] = "UserAccount";
 }
+<div>
 
-@*<h1>
-	Brugernavn: @Model.User.TagName;
-</h1>*@
-@*<h1>
-	Fornavn: 	@Model.User.Firstname;
+    @if (ViewBag.LoadError==false)
+    {
+        <h1>User Name: @Model.User.TagName</h1>
+        <h1>Club Name: @Model.Team.ClubName</h1>
+        <h1>Stadium Name: @Model.Stadium.StadiumName</h1>
+    }
+    else
+    {
+        <h1>
+            @TempData["UserDetailErrorMesage"]
+        </h1>
+    }
 
-</h1>
-<h1>
-	Efternavn:	@Model.User.Lastname;
-
-</h1>
-<h1>
-	Klubnavn:	@Model.Team.ClubName;
-
-</h1>
-<h1>
-	Stiftet:	@Model.Team.Founded
-
-</h1>*@
-	<div>
-
-		<h1>
-		
-
-			@*@foreach (Team item in @Model.AllTeams)
-			{
-				item.ClubName
-			}
-
-			@Model.Team.ClubName	
-			
-			
-			@Model.Stadium.Capacity*@
-
-	</h1>
-	</div>
+</div>

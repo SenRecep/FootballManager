@@ -15,7 +15,7 @@ namespace FootballManager.MvcUi.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(IUserSessionService userSessionService, IUserCookieService userCookieService) 
+        public HomeController(IUserSessionService userSessionService, IUserCookieService userCookieService)
             : base(userSessionService, userCookieService)
         {
         }
@@ -23,22 +23,22 @@ namespace FootballManager.MvcUi.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            ViewBag.IsLogin = IsLogin;
-            if (IsLogin)
-            {
-                EntityHttpResponse entityHttpResponse = await ApiCenter.GetAsync($"User");
-                if (entityHttpResponse.IsTrue)
-                {
-                    return View();
+            //ViewBag.IsLogin = IsLogin;
+            //if (IsLogin)
+            //{
+            //    EntityHttpResponse entityHttpResponse = await ApiCenter.GetAsync($"User");
+            //    if (entityHttpResponse.IsTrue)
+            //    {
+            //        return View();
 
-                }
-                else
-                {
-                    TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
-                    return View(TempData);
-                }
+            //    }
+            //    else
+            //    {
+            //        TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
+            //        return View(TempData);
+            //    }
 
-            }
+            //}
             return View();
 
         }
@@ -46,7 +46,7 @@ namespace FootballManager.MvcUi.Controllers
         [HttpPut]
         public async Task<IActionResult> PlayMatch()
         {
-           
+
 
             EntityHttpResponse entityResponse = await ApiCenter.GetAsync($"Season/CreateSeason");
 
@@ -57,41 +57,29 @@ namespace FootballManager.MvcUi.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> UserDetail(int id)
+        public async Task<IActionResult> UserDetail()
         {
             ViewBag.IsLogin = IsLogin;
             if (IsLogin)
             {
-                EntityHttpResponse entityHttpResponseUSer = await ApiCenter.GetAsync($"User/Detail/{id}");
-                EntityHttpResponse entityHttpResponseTeams = await ApiCenter.GetAsync($"Team");
-              
-                if (entityHttpResponseUSer.IsTrue)
-                {
-                    User user = ApiCenter.getData<User>(entityHttpResponseUSer);
+                User user = LoginUser();
 
-                    EntityHttpResponse entityHttpResponseTeam = await ApiCenter.GetAsync($"Team/Detail/{user.id}");
-                    if (entityHttpResponseTeam.IsTrue)
+                EntityHttpResponse entityHttpResponseTeam = await ApiCenter.GetAsync($"Team/{user.Teamid}");
+                if (entityHttpResponseTeam.IsTrue)
+                {
+                    Team team = ApiCenter.getData<Team>(entityHttpResponseTeam);
+                    EntityHttpResponse entityHttpResponseStadium = await ApiCenter.GetAsync($"Stadium/{team.Stadiumid}");
+                    if (entityHttpResponseStadium.IsTrue)
                     {
-                        Team team = ApiCenter.getData<Team>(entityHttpResponseTeam);
-
-                        List<Team> teams;
-                        teams = ApiCenter.getData<List<Team>>(entityHttpResponseTeams);
-                        EntityHttpResponse entityHttpResponseStadium = await ApiCenter.GetAsync($"Stadium/{team.Stadiumid}");
                         Stadium stadium = ApiCenter.getData<Stadium>(entityHttpResponseStadium);
-
-
-                        return View(new AccountListViewModel(user, team, teams, stadium));
+                        ViewBag.LoadError = false;
+                        TempData.Clear();
+                        return View(new AccountListViewModel(user, team, stadium));
                     }
-                    TempData.Add("RegisterErrorMasage", entityHttpResponseUSer._Data);
-                    return View();
                 }
-                else
-                {
-                    TempData.Add("RegisterErrorMasage", entityHttpResponseUSer._Data);
-                    return View();
-                }
-
-
+                ViewBag.LoadError = true;
+                TempData.Add("UserDetailErrorMesage","Kullaniciya ait bilgiler tamamen yuklenemedi");
+                return View(null);
             }
 
             else
@@ -99,10 +87,10 @@ namespace FootballManager.MvcUi.Controllers
 
                 return RedirectToAction("Login", "Account");
             }
-            
+
 
         }
-           
+
     }
 
 
