@@ -3,10 +3,10 @@
 	ViewData["Title"] = "UserAccount";
 }
 
-<h1>
+@*<h1>
 	Brugernavn: @Model.User.TagName;
-</h1>
-<h1>
+</h1>*@
+@*<h1>
 	Fornavn: 	@Model.User.Firstname;
 
 </h1>
@@ -21,4 +21,21 @@
 <h1>
 	Stiftet:	@Model.Team.Founded
 
-</h1>
+</h1>*@
+	<div>
+
+		<h1>
+		
+
+			@foreach (Team item in @Model.AllTeams)
+			{
+				item.ClubName
+			}
+
+			@Model.Team.ClubName	
+			
+			
+			@Model.Stadium.Capacity
+
+	</h1>
+	</div>

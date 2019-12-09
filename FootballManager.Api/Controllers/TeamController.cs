@@ -6,6 +6,7 @@ using static FootballManager.Api.Helper.ExeptionErrorMesaageFromApi;
 using FootBallManager.Entities.Concrete;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace FootballManager.Api.Controllers
 {
@@ -19,8 +20,10 @@ namespace FootballManager.Api.Controllers
             _teamManager = (TeamManager)team;
         }
 
+        
+
         // GET: api/Team
-        [HttpGet, ResponseType(typeof(string))]
+        [HttpGet, ResponseType(typeof(Team))]
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse GetAll() => new EntityHttpResponse(System.Net.HttpStatusCode.OK, _teamManager.GetAll(), true);
 

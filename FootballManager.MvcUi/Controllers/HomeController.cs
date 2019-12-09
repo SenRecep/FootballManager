@@ -35,13 +35,26 @@ namespace FootballManager.MvcUi.Controllers
                 else
                 {
                     TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
-                    return View();
+                    return View(TempData);
                 }
 
             }
             return View();
 
         }
+
+        [HttpPut]
+        public async Task<IActionResult> PlayMatch()
+        {
+           
+
+            EntityHttpResponse entityResponse = await ApiCenter.GetAsync($"Season/CreateSeason");
+
+
+            return View();
+
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> User(int id)
@@ -49,38 +62,49 @@ namespace FootballManager.MvcUi.Controllers
             ViewBag.IsLogin = IsLogin;
             if (IsLogin)
             {
-                EntityHttpResponse entityHttpResponse = await ApiCenter.GetAsync($"User/Detail/{id}");
-                if (entityHttpResponse.IsTrue)
+                EntityHttpResponse entityHttpResponseUSer = await ApiCenter.GetAsync($"User/Detail/{id}");
+                EntityHttpResponse entityHttpResponseTeams = await ApiCenter.GetAsync($"Team");
+              
+                if (entityHttpResponseUSer.IsTrue)
                 {
-                    User user = ApiCenter.getData<User>(entityHttpResponse);
+                    User user = ApiCenter.getData<User>(entityHttpResponseUSer);
 
                     EntityHttpResponse entityHttpResponseTeam = await ApiCenter.GetAsync($"Team/Detail/{user.id}");
                     if (entityHttpResponseTeam.IsTrue)
                     {
                         Team team = ApiCenter.getData<Team>(entityHttpResponseTeam);
 
-                        return View(new AccountListViewModel(user, team));
-                    }
-                    else
-                    {
-                        TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
-                        return View();
-                    }
+                        List<Team> teams;
+                        teams = ApiCenter.getData<List<Team>>(entityHttpResponseTeams);
+                        EntityHttpResponse entityHttpResponseStadium = await ApiCenter.GetAsync($"Stadium/{team.Stadiumid}");
+                        Stadium stadium = ApiCenter.getData<Stadium>(entityHttpResponseStadium);
 
 
+                        return View(new AccountListViewModel(user, team, teams, stadium));
+                    }
+                    TempData.Add("RegisterErrorMasage", entityHttpResponseUSer._Data);
+                    return View();
                 }
-
                 else
                 {
-                    TempData.Add("RegisterErrorMasage", entityHttpResponse._Data);
+                    TempData.Add("RegisterErrorMasage", entityHttpResponseUSer._Data);
                     return View();
                 }
 
 
             }
-            return View();
+
+            else
+            {
+                
+                return View();
+            }
+            
+
         }
-
-
+           
     }
+
+
+
 }
