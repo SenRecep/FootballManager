@@ -39,7 +39,7 @@ namespace FootballManager.MvcUi.Controllers
             {
                 User user = ApiCenter.getData<User>(entityHttpResponse);
                 LoginUserSave(user);
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("UserDetail","Home");
             }
             else
             {

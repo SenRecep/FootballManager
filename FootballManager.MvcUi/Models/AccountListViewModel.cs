@@ -9,15 +9,17 @@ namespace FootballManager.MvcUi.Models
 {
     public class AccountListViewModel 
     {
-        public AccountListViewModel(User user, Team team, Stadium stadium)
+        public AccountListViewModel(User user, Team team, Stadium stadium, List<Team> Commingteams)
         {
             User = user;
             Team = team;
             Stadium = stadium;
+            teams = Commingteams;
         }
         public User User{ get; set; }
         public Team Team { get; set; }
         public Stadium Stadium { get; set; }
+        public  List<Team> teams { get; set; }
 
     }
 }

@@ -74,7 +74,14 @@ namespace FootballManager.MvcUi.Controllers
                         Stadium stadium = ApiCenter.getData<Stadium>(entityHttpResponseStadium);
                         ViewBag.LoadError = false;
                         TempData.Clear();
-                        return View(new AccountListViewModel(user, team, stadium));
+                        EntityHttpResponse entityHttpResponseTeams = await ApiCenter.GetAsync("Team");
+                        if (entityHttpResponseTeams.IsTrue)
+                        {
+                            List<Team> teams;
+                            teams =  ApiCenter.getData<List<Team>>(entityHttpResponseTeams);
+                            return View(new AccountListViewModel(user, team, stadium, teams));
+                        }
+                       
                     }
                 }
                 ViewBag.LoadError = true;
