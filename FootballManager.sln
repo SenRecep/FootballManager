@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballManager.Api.Test", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballManager.WpfUI", "FootballManager.WpfUI\FootballManager.WpfUI.csproj", "{E4F05D03-DFF0-4F41-B3B1-1FE2089F2FBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManager.MvcUi", "FootballManager.MvcUi\FootballManager.MvcUi.csproj", "{F4BD013D-6947-40E6-965C-A0602BCB47FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballManager.MvcUi", "FootballManager.MvcUi\FootballManager.MvcUi.csproj", "{F4BD013D-6947-40E6-965C-A0602BCB47FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

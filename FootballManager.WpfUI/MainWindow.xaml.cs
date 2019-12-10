@@ -29,39 +29,12 @@ namespace FootballManager.WpfUI
             InitializeComponent();
         }
 
-        private  void Button_Click(object sender, RoutedEventArgs e)
+        private void frm_Loader_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (sender!=null && sender is MenuItem menuItem)
+            {
+                page_manager.Source = new Uri($"/FootballManager.WpfUI;component/Pages/{menuItem.Tag}.xaml", UriKind.RelativeOrAbsolute);
+            }
         }
-
-        #region User
-        //Adress adress = ApiCenter.getData<Adress>(await ApiCenter.GetAsync("Adress/1"));
-        //User user = new User()
-        //{
-        //    Firstname = "Murat",
-        //    Lastname = "Şen",
-        //    Email = "kefkenahsapdekorasyon@gmail.com",
-        //    Adress = adress,
-        //    Password = "bubirsifre",
-        //};
-        //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(user, "User/Create");
-        //IEnumerable<User> datas = ApiCenter.getData<IEnumerable<User>>(await ApiCenter.GetAsync("User"));
-        #endregion
-        #region Adress
-        //Postalcode data = ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("PostalCode/1"));
-        //Adress adress = new Adress()
-        //{
-        //    Adresses = "Turkiye/Istanbul/Gokturk No:61 D:3",
-        //    PostalCode = data,
-        //};
-        //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(adress, "Adress/Create");
-        #endregion
-        #region CRUD PostalCode
-        //EntityHttpResponse entityHttpResponse = await ApiCenter.CreateAsync(postalcode, "PostalCode/Create");
-        //IEnumerable<Postalcode> datas = ApiCenter.getData<IEnumerable<Postalcode>>(await ApiCenter.GetAsync("PostalCode"));
-        //Postalcode data = ApiCenter.getData<Postalcode>(await ApiCenter.GetAsync("PostalCode/1"));
-        //EntityHttpResponse entityHttpResponse = await ApiCenter.UpdateAsync(data, "PostalCode/Update");
-        //EntityHttpResponse entityHttpResponse = await ApiCenter.DeleteAsync("2", "PostalCode");
-        #endregion
     }
 }

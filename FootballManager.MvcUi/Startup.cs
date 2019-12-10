@@ -29,7 +29,7 @@ namespace FootballManager.MvcUi
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
+
             services.AddSession();
             services.AddDistributedMemoryCache();
         }
@@ -61,6 +61,8 @@ namespace FootballManager.MvcUi
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

@@ -21,7 +21,8 @@ namespace FootballManager.Api.Helper
             {
                 errormasages += $"{x.ErrorMessage}\n";
             });
-            errormasages.Remove(errormasages.Length - 1, 1);
+            if (errormasages.Length > 1)
+                errormasages.Remove(errormasages.Length - 1, 1);
             return errormasages;
         }
         /// <summary>

@@ -30,6 +30,7 @@ namespace FootballManager.Dal.Concrete.EntityFramework.Contexts
         public DbSet<Season> Seasons { get; set; }
         public DbSet<League> Leagues { get; set; }
         public DbSet<Matches> Matches { get; set; }
+        public DbSet<LeagueTeam> LeagueTeams { get; set; }
 
     }
 }

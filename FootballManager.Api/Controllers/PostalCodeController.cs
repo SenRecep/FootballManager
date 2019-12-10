@@ -33,7 +33,7 @@ namespace FootballManager.Api.Controllers
         }
 
         // POST: api/Postalcode/Create
-        [EnableCors("AnotherPolicy")]
+        
         [HttpPost, Route("{Postalcode}"), ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse Create([FromBody] Postalcode value)

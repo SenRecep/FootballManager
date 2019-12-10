@@ -20,4 +20,5 @@ namespace FootballManager.Dal.Concrete.EntityFramework
     public class EfSeasonDal : EfEntityRepostoryBase<Season, ManagerContext>, ISeasonDal { }
     public class EfLeagueDal : EfEntityRepostoryBase<League, ManagerContext>, ILeagueDal { }
     public class EfMatchesDal : EfEntityRepostoryBase<Matches, ManagerContext>, IMatchesDal { }
+    public class EfLeagueTeamDal : EfEntityRepostoryBase<LeagueTeam, ManagerContext>, ILeagueTeamDal { }
 }

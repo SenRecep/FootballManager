@@ -15,9 +15,14 @@ namespace FootballManager.Api.Controllers
     public class LeagueController : BaseController
     {
         private readonly LeagueManager _Leaguemanager;
-        public LeagueController(ILeagueService League)
+        private readonly LeagueTeamManager _leagueTeamManager;
+        private readonly MatchesManager _matchesManager;
+
+        public LeagueController(ILeagueService League, ILeagueTeamService leagueTeamService, IMatchesService matchesService)
         {
             _Leaguemanager = (LeagueManager)League;
+            _leagueTeamManager = (LeagueTeamManager)leagueTeamService;
+            _matchesManager = (MatchesManager)matchesService;
         }
 
         // GET: api/League
@@ -33,11 +38,11 @@ namespace FootballManager.Api.Controllers
         [HttpGet, Route("{id}"), ResponseType(typeof(string))]
         public EntityHttpResponse Get(int id)
         {
-            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Leaguemanager.Get(x=>x.id==id),true);
+            return new EntityHttpResponse(System.Net.HttpStatusCode.OK, _Leaguemanager.Get(x => x.id == id), true);
         }
 
         // POST: api/League/Create
-        [EnableCors("AnotherPolicy")]
+
         [HttpPost, Route("{League}"), ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse Create([FromBody] League value)

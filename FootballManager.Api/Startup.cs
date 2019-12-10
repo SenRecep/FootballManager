@@ -2,6 +2,7 @@ using FootballManager.Bll.Abstract;
 using FootballManager.Bll.Concrete;
 using FootballManager.Dal.Abstract;
 using FootballManager.Dal.Concrete.EntityFramework;
+using FootBallManager.Entities.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,29 +17,12 @@ namespace FootballManager.Api
         {
             Configuration = configuration;
         }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-
-                        builder.WithOrigins("https://localhost:44380");
-                    });
-
-                options.AddPolicy("AnotherPolicy",
-                    builder =>
-                    {
-                        builder.WithOrigins("https://localhost:44380")
-                                            .AllowAnyHeader()
-                                            .AllowAnyMethod();
-                    });
-            });
             services.AddControllers();
             services.AddScoped<IAdressesService, AdressManager>();
             services.AddScoped<IAdressDal, EfAdresstDal>();
@@ -67,10 +51,14 @@ namespace FootballManager.Api
 
             services.AddScoped<IMatchesService, MatchesManager>();
             services.AddScoped<IMatchesDal, EfMatchesDal>();
+
             services.AddScoped<ISeasonService, SeasonManager>();
             services.AddScoped<ISeasonDal, EfSeasonDal>();
             services.AddScoped<ILeagueService, LeagueManager>();
             services.AddScoped<ILeagueDal, EfLeagueDal>();
+
+            services.AddScoped<ILeagueTeamService, LeagueTeamManager>();
+            services.AddScoped<ILeagueTeamDal, EfLeagueTeamDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,9 +68,6 @@ namespace FootballManager.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(MyAllowSpecificOrigins);
-
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

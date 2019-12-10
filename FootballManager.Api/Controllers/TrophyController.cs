@@ -38,7 +38,7 @@ namespace FootballManager.Api.Controllers
         }
 
         // POST: api/Trophy/Create
-        [EnableCors("AnotherPolicy")]
+        
         [HttpPost, Route("{Trophy}"), ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse Create([FromBody] Trophy value)

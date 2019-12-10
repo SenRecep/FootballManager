@@ -19,5 +19,6 @@ namespace FootballManager.Dal.Abstract
     public interface ISeasonDal : IEntityRepostory<Season> { }
     public interface ILeagueDal : IEntityRepostory<League> { }
     public interface IMatchesDal : IEntityRepostory<Matches> { }
+    public interface ILeagueTeamDal : IEntityRepostory<LeagueTeam> { }
 
 }

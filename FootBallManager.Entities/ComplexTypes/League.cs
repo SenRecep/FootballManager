@@ -13,7 +13,9 @@ namespace FootBallManager.Entities.ComplexTypes
         public Season Season { get; set; }
         public int? Seasonid { get; set; }
 
-        public virtual List<Team> Teams { get; set; }
+        public string Name{ get; set; }
+
+        public virtual List<LeagueTeam> LeagueTeams { get; set; }
         public virtual List<Matches> Matches { get; set; }
     }
 }

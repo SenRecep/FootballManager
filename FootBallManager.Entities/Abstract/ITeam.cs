@@ -1,4 +1,5 @@
-﻿using FootBallManager.Entities.Concrete;
+﻿using FootBallManager.Entities.ComplexTypes;
+using FootBallManager.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,5 +16,6 @@ namespace FootBallManager.Entities.Abstract
         Coach Coach{ get; set; }
         int? Coachid { get; set; }
         List<Trophy> Trophies { get; set; }
+        List<LeagueTeam> LeagueTeams { get; set; }
     }
 }

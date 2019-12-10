@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Click="Button_Click" Height="50" Content="Click me"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Pages">
+                <MenuItem Tag="SeasonCreate" Click="frm_Loader_Click" Header="Season Create"/>
+                <MenuItem Tag="LeagueCreate" Click="frm_Loader_Click" Header="League Create"/>
+            </MenuItem>
+        </Menu>
+        <Frame Grid.Row="1" x:Name="page_manager" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

@@ -48,7 +48,6 @@ namespace FootballManager.Api.Controllers
         }
 
         // POST: api/Season/Create
-        [EnableCors("AnotherPolicy")]
         [HttpPost, Route("{Season}"), ResponseType(typeof(string))]
         //[ApiAuthorizeAttribute(Roles = "A")]
         public EntityHttpResponse Create([FromBody] Season value)
@@ -73,52 +72,6 @@ namespace FootballManager.Api.Controllers
             _seasonmanager.Save();
             return new EntityHttpResponse(System.Net.HttpStatusCode.NoContent, null, true);
         }
-
-
-        // DELETE: api/Season/CreateSeason
-        [HttpGet("Season"), ResponseType(typeof(void))]
-        public EntityHttpResponse CreateSeason()
-        {
-            ISeason season = new Season()
-            {
-                Date = DateTime.Now,
-
-            };
-                try
-                {
-                League Liga = new League()
-                {
-                    Season = (Season)season,
-                };
-                Liga.Teams.Add(_teamManager.Get(x=> x.IsActive == true));
-
-                List<Matches> matches = new List<Matches>();
-                Matches matches1 = new Matches()
-                {
-                    FirstTeam = _teamManager.Get(x => x.id == 1),
-                    SecondTeam = _teamManager.Get(x => x.id == 2),
-                    IsPlayed = true,
-                    ScoreFirstTeam = 1,
-                    ScoreSecondTeam = 2
-                };
-                
-                return new EntityHttpResponse(System.Net.HttpStatusCode.OK, season, true);      
-                }
-                catch (Exception E)
-                {
-                    return new EntityHttpResponse(System.Net.HttpStatusCode.InternalServerError, "Der kunne ikke oprettes en ny sæson.", false);
-                }
-              
-            }
-        }
-
-
-
-
-
-
-
-
-
-
+    
     }
+}

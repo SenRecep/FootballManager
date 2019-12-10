@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FootballManager.Dal.Migrations
 {
-    public partial class initi : Migration
+    public partial class _xinitx : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -138,7 +138,7 @@ namespace FootballManager.Dal.Migrations
                     Age = table.Column<int>(nullable: false),
                     Nationid = table.Column<int>(nullable: false),
                     WeeklyPaid = table.Column<double>(nullable: false),
-                    CoachSkillid = table.Column<int>(nullable: false)
+                    CoachSkillid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -148,7 +148,7 @@ namespace FootballManager.Dal.Migrations
                         column: x => x.CoachSkillid,
                         principalTable: "CoachSkills",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Coachs_Nations_Nationid",
                         column: x => x.Nationid,
@@ -193,7 +193,8 @@ namespace FootballManager.Dal.Migrations
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateUserid = table.Column<int>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    Seasonid = table.Column<int>(nullable: true)
+                    Seasonid = table.Column<int>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -220,8 +221,7 @@ namespace FootballManager.Dal.Migrations
                     ClubName = table.Column<string>(nullable: false),
                     Founded = table.Column<int>(nullable: false),
                     Stadiumid = table.Column<int>(nullable: false),
-                    Coachid = table.Column<int>(nullable: true),
-                    Leagueid = table.Column<int>(nullable: true)
+                    Coachid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -233,15 +233,40 @@ namespace FootballManager.Dal.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Teams_Leagues_Leagueid",
-                        column: x => x.Leagueid,
-                        principalTable: "Leagues",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Teams_Stadiums_Stadiumid",
                         column: x => x.Stadiumid,
                         principalTable: "Stadiums",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LeagueTeam",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    Teamid = table.Column<int>(nullable: false),
+                    Leagueid = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LeagueTeam", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_LeagueTeam_Leagues_Leagueid",
+                        column: x => x.Leagueid,
+                        principalTable: "Leagues",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LeagueTeam_Teams_Teamid",
+                        column: x => x.Teamid,
+                        principalTable: "Teams",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -452,6 +477,16 @@ namespace FootballManager.Dal.Migrations
                 column: "Seasonid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_LeagueTeam_Leagueid",
+                table: "LeagueTeam",
+                column: "Leagueid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LeagueTeam_Teamid",
+                table: "LeagueTeam",
+                column: "Teamid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Matches_FirstTeamid",
                 table: "Matches",
                 column: "FirstTeamid");
@@ -487,11 +522,6 @@ namespace FootballManager.Dal.Migrations
                 column: "Coachid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_Leagueid",
-                table: "Teams",
-                column: "Leagueid");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Teams_Stadiumid",
                 table: "Teams",
                 column: "Stadiumid");
@@ -518,6 +548,9 @@ namespace FootballManager.Dal.Migrations
                 name: "Descriptions");
 
             migrationBuilder.DropTable(
+                name: "LeagueTeam");
+
+            migrationBuilder.DropTable(
                 name: "Matches");
 
             migrationBuilder.DropTable(
@@ -530,6 +563,9 @@ namespace FootballManager.Dal.Migrations
                 name: "Players");
 
             migrationBuilder.DropTable(
+                name: "Leagues");
+
+            migrationBuilder.DropTable(
                 name: "Adresses");
 
             migrationBuilder.DropTable(
@@ -539,13 +575,13 @@ namespace FootballManager.Dal.Migrations
                 name: "Teams");
 
             migrationBuilder.DropTable(
+                name: "Seasons");
+
+            migrationBuilder.DropTable(
                 name: "Postalcodes");
 
             migrationBuilder.DropTable(
                 name: "Coachs");
-
-            migrationBuilder.DropTable(
-                name: "Leagues");
 
             migrationBuilder.DropTable(
                 name: "Stadiums");
@@ -555,9 +591,6 @@ namespace FootballManager.Dal.Migrations
 
             migrationBuilder.DropTable(
                 name: "Nations");
-
-            migrationBuilder.DropTable(
-                name: "Seasons");
         }
     }
 }
