@@ -1,20 +1,204 @@
 ﻿@model AccountListViewModel
 @{
     ViewData["Title"] = "UserAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
+     
+        @if (ViewBag.LoadError == false)
+        {
 
-    @if (ViewBag.LoadError==false)
-    {
-        <h1>User Name: @Model.User.TagName</h1>
-        <h1>Club Name: @Model.Team.ClubName</h1>
-        <h1>Stadium Name: @Model.Stadium.StadiumName</h1>
-    }
-    else
-    {
-        <h1>
-            @TempData["UserDetailErrorMesage"]
-        </h1>
-    }
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-body">
+                                    <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                                        <li class="nav-item">
+                                            <a href="#myleague" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                                <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                <span class="d-none d-lg-block">MY LEAGUES</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#soccerstatus" data-toggle="tab" aria-expanded="true" class="nav-link rounded-0 active">
+                                                <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
+                                                <span class="d-none d-lg-block">MY SOCCER STATUS</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#myteams" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                                <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                                <span class="d-none d-lg-block">MY TEAMS</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#mynews" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                                <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                                <span class="d-none d-lg-block">MY NEWS</span>
+                                            </a>
+                                        </li>
 
-</div>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane" id="myleague">
+                                            <div class="box">
+                                                <div class="container">
+
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <a href="#">
+                                                                <figure class="text-center">
+                                                                    <img src="https://smsbongda.com/wp-content/uploads/2019/08/la-liga-la-gi-co-may-vong-bao-nhieu-doi-lich-thi-dau-va-bang-xep-hang-la-liga-tay-ban-nha-3.jpg" class="cardimg" alt="img1">
+                                                                    <figcaption>
+                                                                        <h5 class="boxfigurefigcaptionh5">LaLiga</h5>
+
+                                                                    </figcaption>
+                                                                </figure>
+                                                            </a>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane show active" id="soccerstatus">
+                                            <div class="table-responsive">
+                                                <table class="table no-wrap v-middle mb-0">
+
+                                                    <tbody>
+                                                        @foreach (var item in Model.teams)
+                                                        {
+
+
+
+                                                            if (item.ClubName == Model.Team.ClubName)
+                                                            {
+                                                                <tr>
+                                                                    <td class="border-top-1 px-2 py-4">
+                                                                        <div class="d-flex no-block align-items-center">
+                                                                            <div class="mr-3"><img src="http://assets.stickpng.com/thumbs/584a9b3bb080d7616d298777.png" alt="team" width="45" height="45"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="border-top-1 font-weight-bold"> <h5 class="text-dark mb-0 font-16 font-weight-medium">@item.ClubName</h5></td>
+                                                                    <td class="border-top-1 text-muted"> <h5 class="text-dark mb-0 font-16 font-weight-medium"> </h5></td>
+
+
+                                                                </tr>
+                                                            }
+                                                            else
+                                                            {
+                                                                  <tr>
+                                                                    <td class="border-top-1 px-2 py-4">
+                                                                        <div class="d-flex no-block align-items-center">
+                                                                            <div class="mr-3"><img src="http://assets.stickpng.com/thumbs/584a9b3bb080d7616d298777.png" alt="team" width="45" height="45"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="border-top-1 font-weight-bold"> <h5 class="text-dark mb-0 font-16 font-weight-medium">@item.ClubName</h5></td>
+                                                                    <td class="border-top-1 text-muted"> <h5 class="text-dark mb-0 font-16 font-weight-medium"> </h5></td>
+
+
+                                                                </tr>
+
+                                                            }
+
+                                                        }
+
+
+
+
+                                                        <!--   <tr>
+        <td class="px-2 py-4">
+            <div class="d-flex no-block align-items-center">
+                <div class="mr-3"><img src="../assets/images/users/widget-table-pic4.jpg" alt="user" class="rounded-circle" width="45" height="45"></div>
+                <div class="">
+                    <h5 class="text-dark mb-0 font-16 font-weight-medium">Jan
+                        Petrovic
+                    </h5>
+                    <span class="text-muted font-14">hgover@gmail.com</span>
+                </div>
+            </div>
+        </td>
+        <td class="text-muted px-2 py-4 font-14">Hosting Press HTML</td>
+        <td class="px-2 py-4">
+            <div class="popover-icon">
+                <a class="btn btn-primary rounded-circle btn-circle font-12" href="javascript:void(0)">DS</a>
+                <a class="btn btn-success text-white font-20 rounded-circle btn-circle" href="javascript:void(0)">+</a>
+            </div>
+        </td>
+        <td class="text-center px-2 py-4"><i class="fa fa-circle text-danger font-12" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Progress"></i></td>
+        <td class="text-center text-muted font-weight-medium px-2 py-4">23</td>
+        <td class="font-weight-medium text-dark px-2 py-4">$80K</td>
+    </tr> -->
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="myteams">
+
+                                            <table class="table no-wrap v-middle mb-0">
+
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="mr-3"><img src="../assets/images/users/widget-table-pic4.jpg" alt="user" class="rounded-circle" width="45" height="45"></div>
+                                                                <div class="">
+                                                                    <h5 class="text-dark mb-0 font-16 font-weight-medium">
+                                                                        NAME SURNAME
+                                                                    </h5>
+
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center popover-icon">
+                                                                <a class="btn btn-primary rounded-circle btn-circle font-12" href="javascript:void(0)">FW</a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left:10em!important;"><i class="fa fa-circle text-success font-12" data-toggle="tooltip" data-placement="top" title="" data-original-title="In Progress"></i></td>
+
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane" id="mynews">
+
+                                            <p class="mb-0">NO NEWS</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            @*<h1>User Name: @Model.User.TagName</h1>
+            <h1>Club Name: @Model.Team.ClubName</h1>
+            <h1>Stadium Name: @Model.Stadium.StadiumName</h1>*@
+
+        }
+        else
+        {
+            <h1>
+                @TempData["UserDetailErrorMesage"]
+            </h1>
+        }
+
+     
